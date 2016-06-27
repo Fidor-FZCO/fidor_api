@@ -27,7 +27,7 @@ module FidorApi
       end
 
       def self.required_attributes
-        [ :account_id, :external_uid, :contact_name, :account_number, :routing_code, :amount, :subject, :currency ]
+        [ :account_id, :external_uid, :contact_name, :amount, :subject, :currency ]
       end
 
       def as_json

@@ -17,12 +17,12 @@ end
 
 FidorApi.configure do |config|
   config.callback_url    = "http://localhost:3000/auth/callback"
-  config.oauth_url       = "https://aps.fidor.de"
-  config.api_url         = "https://aps.fidor.de"
-  config.client_id       = "client-id"
-  config.client_secret   = "client-secret"
-  config.htauth_user     = "htauth-user"
-  config.htauth_password = "htauth-password"
+  config.oauth_url       = "http://localhost:5000"
+  config.api_url         = "http://localhost:8080"
+  config.client_id       = "84dd69b799bc1f0b"
+  config.client_secret   = "735977c7e8a4f7410df55acd1b3b4205"
+  config.htauth_user     = "fidor-mobile"
+  config.htauth_password = "mobile!wir!bank$"
   config.affiliate_uid   = "1398b666-6666-6666-6666-666666666666"
   config.logging         = false
 end

@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://aps.fidor.de/transfers
+    body:
+      encoding: UTF-8
+      string: '{"account_id":"29208706","external_uid":"4279762F8","amount":1000,"currency":"AED","subject":"Money
+        for you","beneficiary":{"contact":{"name":"John Doe"},"routing_type":"UAE_DOMESTIC","routing_info":{"account_number":"AE070331234567890123456","swift_code":"ARABAEADSHJ"}}}'
+    headers:
+      Authorization:
+      - Bearer 0816d2665999fbd76a69c6f0050a49fa
+      Accept:
+      - application/vnd.fidor.de; version=1,text/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 303
+      message:
+    headers:
+      server:
+      - nginx/1.10.1
+      date:
+      - Tue, 28 Jun 2016 12:32:05 GMT
+      content-type:
+      - text/plain; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      location:
+      - "/fidor_api/confirmable/actions/15"
+      x-ratelimit-limit:
+      - '60'
+      x-ratelimit-remaining:
+      - '57'
+      x-ratelimit-reset:
+      - '776'
+      cache-control:
+      - no-cache
+      x-request-id:
+      - b76d119d-87a0-4312-93fd-60ba2e9b57cb
+      x-runtime:
+      - '0.230839'
+      set-cookie:
+      - __profilin=p%3Dt; path=/, __profilin=p%3Dt; path=/
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Tue, 28 Jun 2016 12:32:05 GMT
+recorded_with: VCR 2.9.3

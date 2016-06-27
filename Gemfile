@@ -11,4 +11,5 @@ group :development, :test do
   gem "vcr", "~> 2.9"
   gem "simplecov", "~> 0.10"
   gem "codeclimate-test-reporter", group: :test, require: nil
+  gem "faraday-detailed_logger"
 end
