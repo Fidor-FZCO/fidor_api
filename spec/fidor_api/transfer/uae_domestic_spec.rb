@@ -41,7 +41,6 @@ describe FidorApi::Transfer::UaeDomestic do
 
           expect(action).to be_a FidorApi::ConfirmableAction
           expect(action.id).to eq 15
-          expect(action.resource).to eq subject
         end
       end
     end

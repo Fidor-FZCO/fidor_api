@@ -80,11 +80,10 @@ module FidorApi
     def create(options = {})
       raise InvalidRecordError unless valid?
       response = self.class.request({ method: :post, access_token: client.try { |c| c.token.access_token }, endpoint: self.class.resource, body: as_json }.merge(options))
-      if response.status == 303
-        self.confirmable_action = ConfirmableAction.new(id: response.headers["Location"].split("/").last.to_i, resource: self)
-      else
-        set_attributes(response.body)
+      if path = response.headers["X-Fidor-Confirmation-Path"]
+        self.confirmable_action = ConfirmableAction.new(id: path.split("/").last.to_i)
       end
+      set_attributes(response.body)
       true
     rescue ValidationError => e
       map_errors(e.fields)
