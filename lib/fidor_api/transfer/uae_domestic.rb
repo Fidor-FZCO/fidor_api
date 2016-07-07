@@ -10,7 +10,7 @@ module FidorApi
       validates :swift_code,     presence: true
 
       def initialize(attrs = {})
-        self.contact_name   = attrs.fetch("beneficiary", {}).fetch("contact", {})["name"]
+        set_beneficiary_attributes(attrs)
         self.account_number = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["account_number"]
         self.swift_code     = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["swift_code"]
         super(attrs.except("beneficiary"))
