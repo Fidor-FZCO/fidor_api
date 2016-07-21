@@ -6,8 +6,8 @@ module FidorApi
       attribute :account_number, :string
       attribute :swift_code,     :string
 
-      validates :account_number, presence: true
-      validates :swift_code,     presence: true
+      validates :account_number, presence: true, unless: :beneficiary_reference_passed?
+      validates :swift_code,     presence: true, unless: :beneficiary_reference_passed?
 
       def initialize(attrs = {})
         set_beneficiary_attributes(attrs)
