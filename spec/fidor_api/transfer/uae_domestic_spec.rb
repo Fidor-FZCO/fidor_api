@@ -43,7 +43,7 @@ describe FidorApi::Transfer::UaeDomestic do
           action = subject.confirmable_action
 
           expect(action).to be_a FidorApi::ConfirmableAction
-          expect(action.id).to eq 15
+          expect(action.id).to eq "8437c0c7-f704-4fc8-8ee0-3c18aedc8484"
         end
       end
     end

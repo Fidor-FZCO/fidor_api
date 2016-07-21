@@ -36,7 +36,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       x-fidor-confirmation-path:
-      - "/fidor_api/confirmable/actions/15"
+      - "/fidor_api/confirmable/actions/8437c0c7-f704-4fc8-8ee0-3c18aedc8484"
       x-ratelimit-limit:
       - '60'
       x-ratelimit-remaining:
