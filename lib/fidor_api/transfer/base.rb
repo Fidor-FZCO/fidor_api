@@ -5,7 +5,7 @@ module FidorApi
         if id.nil?
           create
         else
-          raise NoUpdatesAllowedError
+          update
         end
       end
 

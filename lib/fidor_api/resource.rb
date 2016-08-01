@@ -97,6 +97,19 @@ module FidorApi
       false
     end
 
+    def update(options = {})
+      raise InvalidRecordError unless valid?
+      response = self.class.request({ method: :put, access_token: client.try { |c| c.token.access_token }, endpoint: "#{self.class.resource}/#{id}", body: as_json }.merge(options))
+      if path = response.headers["X-Fidor-Confirmation-Path"]
+        self.confirmable_action = ConfirmableAction.new(id: path.split("/").last)
+      end
+      initialize(response.body)
+      true
+    rescue ValidationError => e
+      map_errors(e.fields)
+      false
+    end
+
     def map_errors(fields)
       fields.each do |hash|
         key = hash["field"].to_sym

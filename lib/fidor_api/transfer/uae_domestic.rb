@@ -39,6 +39,10 @@ module FidorApi
         def build_uae_domestic_transfer(attributes = {})
           Transfer::UaeDomestic.new(attributes.merge(client: self))
         end
+
+        def update_uae_domestic_transfer(id, attributes = {})
+          Transfer::UaeDomestic.new(attributes.merge(client: self, id: id))
+        end
       end
     end
   end
