@@ -52,12 +52,12 @@ http_interactions:
       - '0.050782'
     body:
       encoding: UTF-8
-      string: '{"data":[{"id":"6422ec33-4935-41cc-af26-6af40c4c1349","account_id":"56827782","contact":{"name":"Emad
-        Hussain","address_line_1":"Contact Address 1","address_line_2":"Contact Address
+      string: '{"data":[{"id":"6422ec33-4935-41cc-af26-6af40c4c1349","account_id":"56827782","contact":{"name":"John
+        Doe","address_line_1":"Contact Address 1","address_line_2":"Contact Address
         2","city":"Contact City","country":"Contact Country"},"bank":{"name":"Bank
         Name","address_line_1":"Bank Address 1","address_line_2":"Bank Address 2","city":"Bank
-        City","country":"Bank Country"},"routing_type":"UAE_DOMESTIC","routing_info":{"account_number":"AE123456789012345678","swift_code":"ABDIAEAD"},"verified":true,"created_at":"2016-07-20T00:00:00Z","updated_at":"2016-07-20T00:00:00Z"},{"id":"bf106d9b-b169-4159-9f6a-3e6ca0e31c04","account_id":"56827782","contact":{"name":"Michael
-        Tester","address_line_1":null,"address_line_2":null,"city":null,"country":null},"bank":{"name":null,"address_line_1":null,"address_line_2":null,"city":null,"country":null},"routing_type":"UAE_DOMESTIC","routing_info":{"account_number":"AT352050800001404631","swift_code":"1234567890"},"verified":false,"created_at":"2016-07-20T00:00:00Z","updated_at":"2016-07-20T00:00:00Z"}],"collection":{"current_page":1,"per_page":10,"total_entries":2,"total_pages":1}}'
+        City","country":"Bank Country"},"routing_type":"ACH","routing_info":{"account_number":"John Doe","routing_code":"123456"},"verified":true,"created_at":"2016-07-20T00:00:00Z","updated_at":"2016-07-20T00:00:00Z"},{"id":"bf106d9b-b169-4159-9f6a-3e6ca0e31c04","account_id":"56827782","contact":{"name":"Michael
+        Tester","address_line_1":null,"address_line_2":null,"city":null,"country":null},"bank":{"name":null,"address_line_1":null,"address_line_2":null,"city":null,"country":null},"routing_type":"ACH","routing_info":{"account_number":"AT352050800001404631","routing_code":"1234567890"},"verified":false,"created_at":"2016-07-20T00:00:00Z","updated_at":"2016-07-20T00:00:00Z"}],"collection":{"current_page":1,"per_page":10,"total_entries":2,"total_pages":1}}'
     http_version:
   recorded_at: Wed, 20 Jul 2016 13:17:42 GMT
 recorded_with: VCR 2.9.3
