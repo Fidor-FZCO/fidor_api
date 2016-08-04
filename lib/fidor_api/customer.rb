@@ -104,7 +104,7 @@ module FidorApi
 
     def save
       if id.nil?
-        create(htauth: true, access_token: nil)
+        create(htauth: true)
       else
         raise NoUpdatesAllowedError
       end

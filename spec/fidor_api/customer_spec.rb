@@ -98,7 +98,7 @@ describe FidorApi::Customer do
     context "on a customer object which has no id" do
       context "on success" do
         it "returns true and sets the id on the object" do
-          VCR.use_cassette("customer/create", record: :once, match_requests_on: [:method, :uri, :headers, :body]) do
+          VCR.use_cassette("customer/create_success", record: :once, match_requests_on: [:method, :uri, :headers, :body]) do
             expect(subject.save).to be true
             expect(subject.id).to eq 42
           end
@@ -106,8 +106,11 @@ describe FidorApi::Customer do
       end
 
       context "on failure" do
-        xit "raises an error" do
-          expect { subject.save }.to raise_error FidorApi::ClientError
+        it "raises an error" do
+          VCR.use_cassette("customer/create_failure", record: :once, match_requests_on: [:method, :uri, :headers, :body]) do
+            expect(subject.save).to be false
+            expect(subject.errors[:preferred_language]).to eq ["is invalid"]
+          end
         end
       end
     end
