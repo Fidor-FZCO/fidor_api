@@ -78,7 +78,7 @@ module FidorApi
     end
 
     def self.update(access_token, id, attributes)
-      new(request({ method: :put, access_token: access_token, endpoint: "/customers/#{id}", body: attributes}).body)
+      request({ method: :put, access_token: access_token, endpoint: "/customers/#{id}", body: attributes })
     end
 
     def initialize(*args)
