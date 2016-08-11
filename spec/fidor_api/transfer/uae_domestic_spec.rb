@@ -7,17 +7,18 @@ describe FidorApi::Transfer::UaeDomestic do
 
   subject do
     client.build_uae_domestic_transfer(
-      account_id:             "29208706",
-      external_uid:           "4279762F8",
-      contact_name:           "John Doe",
-      contact_address_line_1: "Street 123",
-      bank_name:              "Bank Name",
-      bank_address_line_1:    "Street 456",
-      account_number:         "AE070331234567890123456",
-      swift_code:             "ARABAEADSHJ",
-      amount:                 BigDecimal.new("10.00"),
-      currency:               "AED",
-      subject:                "Money for you"
+      account_id:              "29208706",
+      external_uid:            "4279762F8",
+      beneficiary_unique_name: "Johnny Doe",
+      contact_name:            "John Doe",
+      contact_address_line_1:  "Street 123",
+      bank_name:               "Bank Name",
+      bank_address_line_1:     "Street 456",
+      account_number:          "AE070331234567890123456",
+      swift_code:              "ARABAEADSHJ",
+      amount:                  BigDecimal.new("10.00"),
+      currency:                "AED",
+      subject:                 "Money for you"
     )
   end
 
@@ -75,6 +76,7 @@ describe FidorApi::Transfer::UaeDomestic do
         account_id: "29208706",
         amount: 1000,
         beneficiary: {
+          unique_name: "Johnny Doe",
           contact: {
             name:           "John Doe",
             address_line_1: "Street 123"
