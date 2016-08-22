@@ -3,6 +3,8 @@ module FidorApi
     class UaeDomestic < Base
       include Generic
 
+      validates :contact_name, presence: true, unless: :beneficiary_reference_passed?
+
       attribute :account_number, :string
       attribute :swift_code,     :string
 
