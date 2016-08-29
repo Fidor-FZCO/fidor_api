@@ -20,6 +20,7 @@ module FidorApi
     include Transfer::Internal::ClientSupport
     include Transfer::SEPA::ClientSupport
     include Transfer::UaeDomestic::ClientSupport
+    include Transfer::P2pAccountNumber::ClientSupport
     include Transfer::P2pPhone::ClientSupport
     include Transfer::P2pUsername::ClientSupport
     include User::ClientSupport
