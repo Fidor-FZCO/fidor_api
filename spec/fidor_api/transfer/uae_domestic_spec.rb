@@ -64,7 +64,11 @@ describe FidorApi::Transfer::UaeDomestic do
         VCR.use_cassette("transfer/uae_domestic/save_failure", record: :once) do
           expect(subject.save).to be false
           expect(subject.errors[:account_id]).to eq ["should be the token user's account id"]
-          expect(subject.errors[:account_number]).to eq ["invalid"]
+          expect(subject.errors[:account_number]).to eq ["is_invalid"]
+          expect(subject.errors.details).to eq(
+            account_id:     [{error: "should be the token user's account id"}],
+            account_number: [{error: :invalid}]
+          )
         end
       end
     end
