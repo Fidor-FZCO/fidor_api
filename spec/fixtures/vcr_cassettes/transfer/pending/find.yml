@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://aps.fidor.de/pending_transfers/42af0f631dd47190680fb7d532be9af4
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.fidor.de; version=1,text/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Basic aHRhdXRoLXVzZXI6aHRhdXRoLXBhc3N3b3Jk
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      cache-control:
+      - no-store, must-revalidate, private, max-age=0
+      x-request-id:
+      - e57c1ece-d12f-4e55-8885-9f16f6260c1b
+      x-runtime:
+      - '0.081661'
+      set-cookie:
+      - __profilin=p%3Dt; path=/, __profilin=p%3Dt; path=/, __profilin=p%3Dt; path=/
+      x-miniprofiler-ids:
+      - '["f5i4o3ctft60ftbiagzz","qitlrg7i9lnrx0duyfoc","5p8apdcpzk6xnsma7bl","s8sr0ci4isrd2uyhlkh5","tnv74chalowe0xp34t5l","gp7rvk3iy1epxpvp7j00","7gse82e780tq8x91lih8","qigtfkk49eitavdj0gug","e5sj8f50dbqksr4icy46","ea1g0waloegcsgzoitew"]'
+      connection:
+      - close
+      server:
+      - thin
+    body:
+      encoding: UTF-8
+      string: '{"id":"29c877af-1b2e-4a26-870a-3e9b7d38b742","account_id":"29208706","amount":1,"currency":"AED","subject":"Hello","state":"pending_beneficiary","beneficiary":{"contact":{"name":null,"address_line_1":null,"address_line_2":null,"city":null,"country":null},"bank":{"name":null,"address_line_1":null,"address_line_2":null,"city":null,"country":null},"routing_type":"FOS_P2P_PHONE","routing_info":{"mobile_phone_number":"+4842384284238"}},"created_at":"2016-09-05T06:21:44Z","updated_at":"2016-09-05T06:22:08Z"}'
+    http_version:
+  recorded_at: Mon, 05 Sep 2016 06:26:15 GMT
+recorded_with: VCR 2.9.3

@@ -23,6 +23,7 @@ module FidorApi
     include Transfer::P2pAccountNumber::ClientSupport
     include Transfer::P2pPhone::ClientSupport
     include Transfer::P2pUsername::ClientSupport
+    include Transfer::Pending::ClientSupport
     include User::ClientSupport
   end
 

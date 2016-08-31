@@ -89,7 +89,7 @@ module FidorApi
 
     def create(options = {})
       raise InvalidRecordError unless valid?
-      response = self.class.request({ method: :post, access_token: client.try { |c| c.token.access_token }, endpoint: "/#{self.class.resource}", body: as_json }.merge(options))
+      response = self.class.request({ method: :post, access_token: access_token, endpoint: "/#{self.class.resource}", body: as_json }.merge(options))
       if path = response.headers["X-Fidor-Confirmation-Path"]
         self.confirmable_action = ConfirmableAction.new(id: path.split("/").last)
       end
@@ -102,7 +102,7 @@ module FidorApi
 
     def update(options = {})
       raise InvalidRecordError unless valid?
-      response = self.class.request({ method: :put, access_token: client.try { |c| c.token.access_token }, endpoint: "/#{self.class.resource}/#{id}", body: as_json }.merge(options))
+      response = self.class.request({ method: :put, access_token: access_token, endpoint: "/#{self.class.resource}/#{id}", body: as_json }.merge(options))
       if path = response.headers["X-Fidor-Confirmation-Path"]
         self.confirmable_action = ConfirmableAction.new(id: path.split("/").last)
       end
@@ -111,6 +111,12 @@ module FidorApi
     rescue ValidationError => e
       map_errors(e.fields)
       false
+    end
+
+    def access_token
+      return if client.nil?
+      return if client.token.nil?
+      client.token.access_token
     end
 
     def map_errors(fields)
