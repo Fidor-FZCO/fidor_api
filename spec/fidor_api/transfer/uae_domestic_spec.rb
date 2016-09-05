@@ -72,6 +72,16 @@ describe FidorApi::Transfer::UaeDomestic do
         end
       end
     end
+
+    context "with a referenced pending transfer" do
+      it "ach was auch immer" do
+        VCR.use_cassette("transfer/uae_domestic/save_pending_transfer", record: :once) do
+          transfer = subject
+          transfer.pending_transfer_id = "42af0f631dd47190680fb7d532be9af4"
+          expect(transfer.save).to be true
+        end
+      end
+    end
   end
 
   describe "#as_json" do
