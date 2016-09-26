@@ -18,12 +18,10 @@ describe FidorApi::Beneficiary do
     expect(beneficiary.bank_address_line_2).to    eq "Bank Address 2"
     expect(beneficiary.bank_city).to              eq "Bank City"
     expect(beneficiary.bank_country).to           eq "Bank Country"
-    expect(beneficiary.routing_type).to           eq "ACH"
-    expect(beneficiary.routing_info).to           be_a Hash
     expect(beneficiary.verified).to               be true
 
-    expect(beneficiary.routing_info["account_number"]).to eq "John Doe"
-    expect(beneficiary.routing_info["routing_code"]).to   eq "123456"
+    expect(beneficiary.account_number).to eq "AE123456789012345678"
+    expect(beneficiary.swift_code).to     eq "ABDIAEAD"
   end
 
   describe ".all" do
