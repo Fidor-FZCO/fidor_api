@@ -32,7 +32,7 @@ module FidorApi
       end
 
       def self.find_by_pending_transfer(pending_transfer_id)
-        response = Connectivity::Connection.post("/pending_transfers/#{pending_transfer_id}/transfer")
+        response = Connectivity::Connection.get("/pending_transfers/#{pending_transfer_id}/transfer")
         new(response.body)
       end
 
