@@ -13,7 +13,7 @@ module FidorApi
 
       attr_accessor :pending_transfer_id
 
-      def initialize(attrs = {})
+      def set_attributes(attrs = {})
         set_beneficiary_attributes(attrs)
         self.account_number = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["account_number"]
         self.swift_code     = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["swift_code"]
@@ -31,26 +31,32 @@ module FidorApi
         }
       end
 
-      def create(options = {})
-        if pending_transfer_id.present?
-          options[:endpoint]     = "/pending_transfers/#{pending_transfer_id}/transfer"
-          options[:htauth]       = true
-          options[:access_token] = nil
-        end
-        super(options)
+      def self.find_by_pending_transfer(pending_transfer_id)
+        response = Connectivity::Connection.post("/pending_transfers/#{pending_transfer_id}/transfer")
+        new(response.body)
       end
 
-      def self.find_by_pending_transfer(pending_transfer_id)
-        new(request(access_token: nil, endpoint: "/pending_transfers/#{pending_transfer_id}/transfer", htauth: true).body)
+      private
+
+      def remote_create
+        if pending_transfer_id.present?
+          response = Connectivity::Connection.post("/pending_transfers/#{pending_transfer_id}/transfer")
+        else
+          response = endpoint.for(self).post(payload: self.as_json)
+        end
+        if path = response.headers["X-Fidor-Confirmation-Path"]
+          self.confirmable_action = ConfirmableAction.new(id: path.split("/").last)
+        end
+        response
       end
 
       module ClientSupport
         def uae_domestic_transfers(options = {})
-          Transfer::UaeDomestic.all(token.access_token, options)
+          Transfer::UaeDomestic.all(options)
         end
 
         def uae_domestic_transfer(id)
-          Transfer::UaeDomestic.find(token.access_token, id)
+          Transfer::UaeDomestic.find(id)
         end
 
         def uae_domestic_transfer_by_pending_transfer(pending_transfer_id)
@@ -58,11 +64,11 @@ module FidorApi
         end
 
         def build_uae_domestic_transfer(attributes = {})
-          Transfer::UaeDomestic.new(attributes.merge(client: self))
+          Transfer::UaeDomestic.new(attributes)
         end
 
         def update_uae_domestic_transfer(id, attributes = {})
-          Transfer::UaeDomestic.new(attributes.merge(client: self, id: id))
+          Transfer::UaeDomestic.new(attributes.merge(id: id))
         end
       end
     end
