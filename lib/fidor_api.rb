@@ -12,7 +12,7 @@ module FidorApi
 
   autoload :Account,            'fidor_api/account'
   autoload :AmountAttributes,   'fidor_api/amount_attributes'
-  autoload :ApprovalRequired,  'fidor_api/approval_required'
+  autoload :ApprovalRequired,   'fidor_api/approval_required'
   autoload :Auth,               'fidor_api/auth'
   autoload :Beneficiary,        'fidor_api/beneficiary'
   autoload :Card,               'fidor_api/card'
