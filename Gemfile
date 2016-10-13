@@ -9,6 +9,7 @@ group :development, :test do
   gem "rspec", "~> 3.3"
   gem "shoulda-matchers", "~> 2.8"
   gem "vcr", "~> 2.9"
+  gem "webmock"
   gem "simplecov", "~> 0.10"
   gem "codeclimate-test-reporter", group: :test, require: nil
   gem "faraday-detailed_logger"
