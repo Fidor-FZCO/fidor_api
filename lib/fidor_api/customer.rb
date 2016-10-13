@@ -13,7 +13,7 @@ module FidorApi
 
       class Male    < Base; end
       class Female  < Base; end
-      class Unknonw < Base; end
+      class Unknown < Base; end
 
       MAPPING = {
         Male   => "m",
@@ -21,7 +21,7 @@ module FidorApi
       }
 
       def for_api_value(api_value)
-        MAPPING.key(api_value) || Unknonw
+        MAPPING.key(api_value) || Unknown
       end
 
       def object_to_string(object)
@@ -79,6 +79,16 @@ module FidorApi
       self.affiliate_uid = FidorApi.configuration.affiliate_uid
     end
 
+    def request_update(attributes)
+      self.endpoint = Connectivity::Endpoint.new('/customers', :collection, version: '2')
+      endpoint.for(self).put(action: 'request_update', payload: attributes.as_json)
+    end
+
+    def confirm_update(attributes)
+      self.endpoint = Connectivity::Endpoint.new('/customers', :collection, version: '2')
+      endpoint.for(self).put(action: 'confirm_update', payload: {token: attributes['token']})
+    end
+
     def gender
       Gender.for_api_value(@gender)
     end
@@ -116,6 +126,14 @@ module FidorApi
 
       def update_customer(id, attributes)
         Customer.endpoint.for(id).put(payload: attributes)
+      end
+
+      def request_customer_update(id, attributes)
+        Customer.new(id: id).request_update(attributes)
+      end
+
+      def confirm_customer_update(id, attributes)
+        Customer.new(id: id).confirm_update(attributes)
       end
     end
   end
