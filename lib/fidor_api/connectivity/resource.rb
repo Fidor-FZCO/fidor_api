@@ -46,7 +46,7 @@ module FidorApi
 
       def update_attributes(attributes={})
         set_attributes attributes
-        valid? and remote_update attributes.keys.map(&:to_s)
+        valid? and remote_update attributes.keys
       end
 
       private
@@ -55,9 +55,9 @@ module FidorApi
         endpoint.for(self).post(payload: self.as_json)
       end
 
-      def remote_update(attributes=nil)
-        payload = self.as_json
-        payload.slice!(*attributes) if attributes
+      def remote_update(*attributes)
+        payload = self.as_json.with_indifferent_access
+        payload.slice!(*attributes.flatten) if attributes.present?
         endpoint.for(self).put(payload: payload)
       end
 
