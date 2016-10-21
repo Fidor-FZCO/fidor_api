@@ -101,7 +101,7 @@ module FidorApi
       endpoint.for(self).post(payload: self.as_json, tokenless: true)
     end
 
-    def remote_update
+    def remote_update(*attributes)
       raise NoUpdatesAllowedError
     end
 
