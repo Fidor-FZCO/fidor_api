@@ -40,7 +40,7 @@ module FidorApi
 
       def remote_create
         if pending_transfer_id.present?
-          response = Connectivity::Connection.post("/pending_transfers/#{pending_transfer_id}/transfer")
+          response = Connectivity::Connection.post("/pending_transfers/#{pending_transfer_id}/transfer", body: as_json)
         else
           response = endpoint.for(self).post(payload: self.as_json)
         end

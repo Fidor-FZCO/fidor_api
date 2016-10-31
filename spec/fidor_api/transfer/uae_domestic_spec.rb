@@ -74,11 +74,24 @@ describe FidorApi::Transfer::UaeDomestic do
     end
 
     context "with a referenced pending transfer" do
-      it "ach was auch immer" do
+      before do
+        subject.pending_transfer_id = "42af0f631dd47190680fb7d532be9af4"
+      end
+
+      it "successfully saves the transfer" do
         VCR.use_cassette("transfer/uae_domestic/save_pending_transfer", record: :once) do
-          transfer = subject
-          transfer.pending_transfer_id = "42af0f631dd47190680fb7d532be9af4"
-          expect(transfer.save).to be true
+          expect(subject.save).to be true
+        end
+      end
+
+      it "successfully saves the transfer" do
+        expected_request_body = "{\"account_id\":\"29208706\",\"external_uid\":\"4279762F8\",\"amount\":1000,\"currency\":\"AED\",\"subject\":\"Money for you\",\"beneficiary\":{\"unique_name\":\"Johnny Doe\",\"contact\":{\"name\":\"John Doe\",\"address_line_1\":\"Street 123\"},\"bank\":{\"name\":\"Bank Name\",\"address_line_1\":\"Street 456\"},\"routing_type\":\"UAE_DOMESTIC\",\"routing_info\":{\"account_number\":\"AE070331234567890123456\",\"swift_code\":\"ARABAEADSHJ\"}}}"
+
+        VCR.use_cassette("transfer/uae_domestic/save_pending_transfer", record: :once) do
+          subject.save
+
+          expect(WebMock).to have_requested(:post, "https://aps.fidor.de/pending_transfers/42af0f631dd47190680fb7d532be9af4/transfer")
+            .with(body: expected_request_body).once
         end
       end
     end
