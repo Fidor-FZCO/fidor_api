@@ -10,6 +10,6 @@ group :development, :test do
   gem "shoulda-matchers", "~> 2.8"
   gem "vcr", "~> 2.9"
   gem "simplecov", "~> 0.10"
-  gem "codeclimate-test-reporter", group: :test, require: nil
+  gem "codeclimate-test-reporter", "~> 0.6", group: :test, require: nil
   gem "faraday-detailed_logger"
 end
