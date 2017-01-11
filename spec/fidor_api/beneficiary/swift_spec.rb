@@ -1,12 +1,16 @@
 require "spec_helper"
 
-describe FidorApi::Beneficiary::UaeDomestic do
+describe FidorApi::Beneficiary::Swift do
   let(:token)  { FidorApi::Token.new(access_token: "73570bdde25a22bc7219acd1d43a1cde") }
   let(:client) { FidorApi::Client.new(token: token) }
   let(:beneficiary_id) { "9e6155e9-9b6f-464f-a14f-4db44e2ea1e2" }
 
   subject do
-    client.build_uae_domestic_beneficiary(params)
+    described_class.new(params)
+  end
+
+  before do
+    FidorApi::Connectivity.access_token = "f859032a6ca0a4abb2be0583b8347937"
   end
 
   context "when complete data is given" do
@@ -28,20 +32,21 @@ describe FidorApi::Beneficiary::UaeDomestic do
           "city"           => "Bank City",
           "country"        => "Bank Country"
         }.compact,
-        "routing_type"     => "UAE_DOMESTIC",
+        "routing_type"     => "SWIFT",
         "routing_info" => {
-          "account_number" => "AE070331234567890123456",
-          "swift_code"     => "ARABAEADSHJ"
+          "account_number"   => "DE75700222000071891607",
+          "swift_code"       => "FDDODEMMXXX",
+          "account_currency" => "EUR"
         }.compact
       }.compact
     end
 
     describe "#save" do
       it "creates a beneficiary object and sets it's data" do
-        VCR.use_cassette("beneficiary/uae_domestic/save_success", record: :once) do
+        VCR.use_cassette("beneficiary/swift/save_success", record: :once) do
           expect(subject.save).to be_truthy
 
-          expect(subject).to be_instance_of FidorApi::Beneficiary::UaeDomestic
+          expect(subject).to be_instance_of FidorApi::Beneficiary::Swift
 
           expect(subject.id).to                     eq beneficiary_id
           expect(subject.account_id).to             eq "91318832"
@@ -55,8 +60,9 @@ describe FidorApi::Beneficiary::UaeDomestic do
           expect(subject.bank_address_line_2).to    eq "Bank Address 2"
           expect(subject.bank_city).to              eq "Bank City"
           expect(subject.bank_country).to           eq "Bank Country"
-          expect(subject.account_number).to         eq "AE070331234567890123456"
-          expect(subject.swift_code).to             eq "ARABAEADSHJ"
+          expect(subject.account_number).to         eq "DE75700222000071891607"
+          expect(subject.swift_code).to             eq "FDDODEMMXXX"
+          expect(subject.account_currency).to       eq "EUR"
         end
       end
     end
