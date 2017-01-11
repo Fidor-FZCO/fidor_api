@@ -6,7 +6,7 @@ module FidorApi
     autoload :P2pPhone,         'fidor_api/beneficiary/p2p_phone'
     autoload :P2pUsername,      'fidor_api/beneficiary/p2p_username'
     autoload :UaeDomestic,      'fidor_api/beneficiary/uae_domestic'
-    autoload :UaeInternational, 'fidor_api/beneficiary/uae_international'
+    autoload :Swift,            'fidor_api/beneficiary/swift'
     autoload :Unknown,          'fidor_api/beneficiary/unknown'
 
     module ClientSupport
