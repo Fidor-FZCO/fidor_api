@@ -1,16 +1,12 @@
 require "spec_helper"
 
-describe FidorApi::Beneficiary::Swift do
+describe FidorApi::Beneficiary::ACH do
   let(:token)  { FidorApi::Token.new(access_token: "73570bdde25a22bc7219acd1d43a1cde") }
   let(:client) { FidorApi::Client.new(token: token) }
   let(:beneficiary_id) { "9e6155e9-9b6f-464f-a14f-4db44e2ea1e2" }
 
   subject do
-    described_class.new(params)
-  end
-
-  before do
-    FidorApi::Connectivity.access_token = "f859032a6ca0a4abb2be0583b8347937"
+    client.build_ach_beneficiary(params)
   end
 
   context "when complete data is given" do
@@ -32,21 +28,20 @@ describe FidorApi::Beneficiary::Swift do
           "city"           => "Bank City",
           "country"        => "Bank Country"
         }.compact,
-        "routing_type"     => "SWIFT",
+        "routing_type"     => "ACH",
         "routing_info" => {
-          "account_number"   => "DE08100100100666666666",
-          "swift_code"       => "FDDODEMMXXX",
-          "account_currency" => "EUR"
+          "account_number" => "0987654321",
+          "routing_code"   => "12345678"
         }.compact
       }.compact
     end
 
     describe "#save" do
       it "creates a beneficiary object and sets it's data" do
-        VCR.use_cassette("beneficiary/swift/save_success", record: :once) do
+        VCR.use_cassette("beneficiary/ach/save_success", record: :once) do
           expect(subject.save).to be_truthy
 
-          expect(subject).to be_instance_of FidorApi::Beneficiary::Swift
+          expect(subject).to be_instance_of FidorApi::Beneficiary::ACH
 
           expect(subject.id).to                     eq beneficiary_id
           expect(subject.account_id).to             eq "91318832"
@@ -60,9 +55,8 @@ describe FidorApi::Beneficiary::Swift do
           expect(subject.bank_address_line_2).to    eq "Bank Address 2"
           expect(subject.bank_city).to              eq "Bank City"
           expect(subject.bank_country).to           eq "Bank Country"
-          expect(subject.account_number).to         eq "DE08100100100666666666"
-          expect(subject.swift_code).to             eq "FDDODEMMXXX"
-          expect(subject.account_currency).to       eq "EUR"
+          expect(subject.account_number).to         eq "0987654321"
+          expect(subject.routing_code).to           eq "12345678"
         end
       end
     end

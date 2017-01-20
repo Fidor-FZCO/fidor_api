@@ -2,6 +2,7 @@ module FidorApi
   module Beneficiary
     autoload :Base,             'fidor_api/beneficiary/base'
     autoload :Generic,          'fidor_api/beneficiary/generic'
+    autoload :ACH,              'fidor_api/beneficiary/ach'
     autoload :P2pAccountNumber, 'fidor_api/beneficiary/p2p_account_number'
     autoload :P2pPhone,         'fidor_api/beneficiary/p2p_phone'
     autoload :P2pUsername,      'fidor_api/beneficiary/p2p_username'

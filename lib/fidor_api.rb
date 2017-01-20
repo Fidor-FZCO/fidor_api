@@ -59,3 +59,4 @@ module FidorApi
 end
 
 require "fidor_api/errors"
+require "fidor_api/constants"

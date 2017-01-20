@@ -7,6 +7,7 @@ module FidorApi
 
     include Account::ClientSupport
     include Beneficiary::ClientSupport
+    include Beneficiary::ACH::ClientSupport
     include Beneficiary::UaeDomestic::ClientSupport
     include ConfirmableAction::ClientSupport
     include Customer::ClientSupport
@@ -17,12 +18,12 @@ module FidorApi
     include Transfer::ACH::ClientSupport
     include Transfer::FPS::ClientSupport
     include Transfer::Internal::ClientSupport
-    include Transfer::SEPA::ClientSupport
-    include Transfer::UaeDomestic::ClientSupport
     include Transfer::P2pAccountNumber::ClientSupport
     include Transfer::P2pPhone::ClientSupport
     include Transfer::P2pUsername::ClientSupport
     include Transfer::Pending::ClientSupport
+    include Transfer::SEPA::ClientSupport
+    include Transfer::UaeDomestic::ClientSupport
     include User::ClientSupport
   end
 

@@ -14,7 +14,7 @@ describe FidorApi::Transfer::Utility do
       utility_service_number:  "12345678",
       inquiry_ref_num:         "534Z2qoa1qig46d4",
       amount:                  BigDecimal.new("10.00"),
-      currency:                "AED",
+      currency:                "USD",
       subject:                 "Money for you"
     }
   end
@@ -95,7 +95,7 @@ describe FidorApi::Transfer::Utility do
             inquiry_ref_num:        "534Z2qoa1qig46d4"
           }
         },
-        currency: "AED",
+        currency: "USD",
         external_uid: "4279762D9",
         subject: "Money for you"
       )
