@@ -9,7 +9,7 @@ http_interactions:
         Doe","address_line_1":"Contact Address 1","address_line_2":"Contact Address
         2","city":"Contact City","country":"Contact Country"},"bank":{"name":"Bank
         Name","address_line_1":"Bank Address 1","address_line_2":"Bank Address 2","city":"Bank
-        City","country":"Bank Country"},"routing_type":"SWIFT","routing_info":{"account_number":"DE08100100100666666666","swift_code":"FDDODEMMXXX","account_currency":"EUR"}}'
+        City","country":"Bank Country"},"routing_type":"ACH","routing_info":{"account_number":"0987654321","routing_code":"12345678"}}'
     headers:
       Authorization:
       - Bearer 73570bdde25a22bc7219acd1d43a1cde
@@ -58,7 +58,7 @@ http_interactions:
         Doe","address_line_1":"Contact Address 1","address_line_2":"Contact Address
         2","city":"Contact City","country":"Contact Country"},"bank":{"name":"Bank
         Name","address_line_1":"Bank Address 1","address_line_2":"Bank Address 2","city":"Bank
-        City","country":"Bank Country"},"routing_type":"SWIFT","routing_info":{"account_number":"DE08100100100666666666","swift_code":"FDDODEMMXXX","account_currency":"EUR"},"verified":false,"created_at":"2016-09-08T10:13:02Z","updated_at":"2016-09-08T10:13:02Z"}'
+        City","country":"Bank Country"},"routing_type":"ACH","routing_info":{"account_number":"0987654321","routing_code":"12345678"},"verified":false,"created_at":"2016-09-08T10:13:02Z","updated_at":"2016-09-08T10:13:02Z"}'
     http_version:
   recorded_at: Thu, 08 Sep 2016 10:13:02 GMT
 recorded_with: VCR 2.9.3

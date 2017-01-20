@@ -12,7 +12,7 @@ describe FidorApi::Transfer::P2pPhone do
       beneficiary_unique_name: "Johnny Doe",
       mobile_phone_number:     "+971 55 1234567",
       amount:                  BigDecimal.new("10.00"),
-      currency:                "AED",
+      currency:                "USD",
       subject:                 "Money for you"
     )
   end
@@ -58,7 +58,7 @@ describe FidorApi::Transfer::P2pPhone do
             mobile_phone_number: "+971 55 1234567"
           }
         },
-        currency: "AED",
+        currency: "USD",
         external_uid: "4279762F8",
         subject: "Money for you"
       )

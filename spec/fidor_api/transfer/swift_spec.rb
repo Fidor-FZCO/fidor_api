@@ -18,11 +18,11 @@ describe FidorApi::Transfer::Swift do
       contact_address_line_1:  "Street 123",
       bank_name:               "Bank Name",
       bank_address_line_1:     "Street 456",
-      account_number:          "DE75700222000071891607",
+      account_number:          "DE08100100100666666666",
       swift_code:              "FDDODEMMXXX",
       account_currency:        "EUR",
       amount:                  BigDecimal.new("10.00"),
-      currency:                "AED",
+      currency:                "USD",
       subject:                 "Money for you"
     )
   end
@@ -99,12 +99,12 @@ describe FidorApi::Transfer::Swift do
           },
           routing_type: "SWIFT",
           routing_info: {
-            account_number:   "DE75700222000071891607",
+            account_number:   "DE08100100100666666666",
             swift_code:       "FDDODEMMXXX",
             account_currency: "EUR"
           }
         },
-        currency: "AED",
+        currency: "USD",
         external_uid: "4279762F8",
         subject: "Money for you"
       )

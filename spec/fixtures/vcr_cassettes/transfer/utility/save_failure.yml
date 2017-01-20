@@ -5,7 +5,7 @@ http_interactions:
     uri: https://aps.fidor.de/transfers
     body:
       encoding: UTF-8
-      string: '{"account_id":"999","external_uid":"4279762D9","amount":1000,"currency":"AED","subject":"Money
+      string: '{"account_id":"999","external_uid":"4279762D9","amount":1000,"currency":"USD","subject":"Money
         for you","beneficiary":{"unique_name":"Johnny Doey","contact":{},"bank":{},"routing_type":"UTILITY","routing_info":{"utility_provider":"Utility
         Provider","utility_service":"Utility Service","utility_service_number":"12345678","inquiry_ref_num":"534Z2qoa1qig46d4"}}}'
     headers:

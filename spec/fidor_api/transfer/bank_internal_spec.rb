@@ -7,7 +7,7 @@ describe FidorApi::Transfer::BankInternal do
       external_uid:            "4279762F8",
       account_number:          "29208707",
       amount:                  BigDecimal.new("10.00"),
-      currency:                "AED",
+      currency:                "USD",
       subject:                 "Money for you"
     )
   end
@@ -44,7 +44,7 @@ describe FidorApi::Transfer::BankInternal do
             account_number: "29208707"
           }
         },
-        currency: "AED",
+        currency: "USD",
         external_uid: "4279762F8",
         subject: "Money for you"
       )
