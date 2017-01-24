@@ -20,7 +20,8 @@ describe FidorApi::Transfer::UaeDomestic do
       swift_code:              "ARABAEADSHJ",
       amount:                  BigDecimal.new("10.00"),
       currency:                "AED",
-      subject:                 "Money for you"
+      subject:                 "Money for you",
+      additional_attributes:   {"transfer_purpose" => "Computer services"}
     )
   end
 
@@ -33,7 +34,6 @@ describe FidorApi::Transfer::UaeDomestic do
     it { is_expected.to validate_presence_of :account_number   }
     it { is_expected.to validate_presence_of :swift_code       }
     it { is_expected.to validate_presence_of :amount           }
-    it { is_expected.to validate_presence_of :subject          }
   end
 
   describe "#save" do
@@ -89,7 +89,7 @@ describe FidorApi::Transfer::UaeDomestic do
       end
 
       it "successfully saves the transfer" do
-        expected_request_body = %q({"account_id":"29208706","external_uid":"4279762F8","amount":1000,"currency":"AED","subject":"Money for you","beneficiary":{"unique_name":"Johnny Doe","contact":{"name":"John Doe","address_line_1":"Street 123"},"bank":{"name":"Bank Name","address_line_1":"Street 456"},"routing_type":"UAE_DOMESTIC","routing_info":{"destination":"external","account_type":"account","account_number":"AE070331234567890123456","swift_code":"ARABAEADSHJ"}}})
+        expected_request_body = %q({"account_id":"29208706","external_uid":"4279762F8","amount":1000,"currency":"AED","subject":"Money for you","additional_attributes":{"transfer_purpose":"Computer services"},"beneficiary":{"unique_name":"Johnny Doe","contact":{"name":"John Doe","address_line_1":"Street 123"},"bank":{"name":"Bank Name","address_line_1":"Street 456"},"routing_type":"UAE_DOMESTIC","routing_info":{"destination":"external","account_type":"account","account_number":"AE070331234567890123456","swift_code":"ARABAEADSHJ"}}})
 
         VCR.use_cassette("transfer/uae_domestic/save_pending_transfer", record: :once) do
           subject.save
@@ -126,7 +126,8 @@ describe FidorApi::Transfer::UaeDomestic do
         },
         currency: "AED",
         external_uid: "4279762F8",
-        subject: "Money for you"
+        subject: "Money for you",
+        additional_attributes: {"transfer_purpose" => "Computer services"}
       )
     end
   end

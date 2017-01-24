@@ -23,7 +23,8 @@ describe FidorApi::Transfer::Swift do
       account_currency:        "EUR",
       amount:                  BigDecimal.new("10.00"),
       currency:                "USD",
-      subject:                 "Money for you"
+      subject:                 "Money for you",
+      additional_attributes:   {"transfer_purpose" => "Computer services"}
     )
   end
 
@@ -35,7 +36,6 @@ describe FidorApi::Transfer::Swift do
     it { is_expected.to validate_presence_of :swift_code       }
     it { is_expected.to validate_presence_of :account_currency }
     it { is_expected.to validate_presence_of :amount           }
-    it { is_expected.to validate_presence_of :subject          }
   end
 
   describe "#save" do
@@ -106,7 +106,8 @@ describe FidorApi::Transfer::Swift do
         },
         currency: "USD",
         external_uid: "4279762F8",
-        subject: "Money for you"
+        subject: "Money for you",
+        additional_attributes: {"transfer_purpose" => "Computer services"}
       )
     end
   end

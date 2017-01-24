@@ -42,7 +42,7 @@ http_interactions:
       - thin
     body:
       encoding: UTF-8
-      string: '{"id":"29c877af-1b2e-4a26-870a-3e9b7d38b742","account_id":"29208706","amount":1,"currency":"AED","subject":"Hello","state":"pending_beneficiary","beneficiary":{"contact":{"name":null,"address_line_1":null,"address_line_2":null,"city":null,"country":null},"bank":{"name":null,"address_line_1":null,"address_line_2":null,"city":null,"country":null},"routing_type":"FOS_P2P_PHONE","routing_info":{"mobile_phone_number":"+4842384284238"}},"created_at":"2016-09-05T06:21:44Z","updated_at":"2016-09-05T06:22:08Z"}'
+      string: '{"id":"29c877af-1b2e-4a26-870a-3e9b7d38b742","account_id":"29208706","amount":1,"currency":"AED","subject":"Hello","additional_attributes":{"transfer_purpose":"Computer services"},"state":"pending_beneficiary","beneficiary":{"contact":{"name":null,"address_line_1":null,"address_line_2":null,"city":null,"country":null},"bank":{"name":null,"address_line_1":null,"address_line_2":null,"city":null,"country":null},"routing_type":"FOS_P2P_PHONE","routing_info":{"mobile_phone_number":"+4842384284238"}},"created_at":"2016-09-05T06:21:44Z","updated_at":"2016-09-05T06:22:08Z"}'
     http_version:
   recorded_at: Mon, 05 Sep 2016 06:26:15 GMT
 recorded_with: VCR 2.9.3
