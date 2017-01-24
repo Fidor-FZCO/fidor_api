@@ -8,9 +8,9 @@ module FidorApi
       attribute :utility_service_number,  :string
       attribute :inquiry_ref_num,         :string
 
-      validates :utility_provider,        presence: true
-      validates :utility_service,         presence: true
-      validates :utility_service_number,  presence: true
+      validates :utility_provider,        presence: true, unless: :beneficiary_reference_passed?
+      validates :utility_service,         presence: true, unless: :beneficiary_reference_passed?
+      validates :utility_service_number,  presence: true, unless: :beneficiary_reference_passed?
       validates :inquiry_ref_num,         presence: true
 
       def set_attributes(attrs = {})
