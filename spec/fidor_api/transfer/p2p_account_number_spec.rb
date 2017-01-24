@@ -13,7 +13,8 @@ describe FidorApi::Transfer::P2pAccountNumber do
       account_number:          "1234567",
       amount:                  BigDecimal.new("10.00"),
       currency:                "USD",
-      subject:                 "Money for you"
+      subject:                 "Money for you",
+      additional_attributes:   {"transfer_purpose" => "Computer services"}
     )
   end
 
@@ -59,7 +60,8 @@ describe FidorApi::Transfer::P2pAccountNumber do
         },
         currency: "USD",
         external_uid: "4279762F8",
-        subject: "Money for you"
+        subject: "Money for you",
+        additional_attributes: {"transfer_purpose" => "Computer services"}
       )
     end
   end

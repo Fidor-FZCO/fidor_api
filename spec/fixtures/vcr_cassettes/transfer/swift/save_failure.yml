@@ -6,7 +6,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"account_id":"999","external_uid":"4279762F8","amount":1000,"currency":"USD","subject":"Money
-        for you","beneficiary":{"contact":{"name":"John Doe"},"routing_type":"SWIFT","routing_info":{"account_number":"DE08100100100666666666","swift_code":"FDDODEMMXXX","account_currency":"EUR"}}}'
+        for you","additional_attributes":{"transfer_purpose":"Computer services"},"beneficiary":{"contact":{"name":"John Doe"},"routing_type":"SWIFT","routing_info":{"account_number":"DE08100100100666666666","swift_code":"FDDODEMMXXX","account_currency":"EUR"}}}'
     headers:
       Authorization:
       - Bearer 0816d2665999fbd76a69c6f0050a49fa
