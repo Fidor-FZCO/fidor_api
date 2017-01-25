@@ -92,7 +92,8 @@ describe FidorApi::Transfer::Utility do
             utility_provider:       "Utility Provider",
             utility_service:        "Utility Service",
             utility_service_number: "12345678",
-            inquiry_ref_num:        "534Z2qoa1qig46d4"
+            inquiry_ref_num:        "534Z2qoa1qig46d4",
+            additional_fields:      nil
           }
         },
         currency: "USD",
