@@ -17,6 +17,7 @@ describe FidorApi::Customer do
         customer = customers.first
         expect(customer).to be_instance_of FidorApi::Customer
         expect(customer.id).to                        eq 857
+        expect(customer.customer_number).to           eq 123
         expect(customer.email).to                     eq "philip_7261@fidortecs.de"
         expect(customer.first_name).to                eq "Philip"
         expect(customer.last_name).to                 eq "Müller"
