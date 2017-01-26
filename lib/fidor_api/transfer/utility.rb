@@ -7,6 +7,7 @@ module FidorApi
       attribute :utility_service,         :string
       attribute :utility_service_number,  :string
       attribute :inquiry_ref_num,         :string
+      attribute :additional_fields,       :json
 
       validates :utility_provider,        presence: true, unless: :beneficiary_reference_passed?
       validates :utility_service,         presence: true, unless: :beneficiary_reference_passed?
@@ -17,6 +18,7 @@ module FidorApi
         self.utility_provider        = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["utility_provider"]
         self.utility_service         = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["utility_service"]
         self.utility_service_number  = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["utility_service_number"]
+        self.additional_fields       = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["additional_fields"]
         self.inquiry_ref_num         = attrs.fetch("routing_info", {})["inquiry_ref_num"]
         super(attrs.except("routing_type", "routing_info"))
       end
@@ -30,6 +32,7 @@ module FidorApi
           utility_provider:        utility_provider,
           utility_service:         utility_service,
           utility_service_number:  utility_service_number,
+          additional_fields:       additional_fields,
           inquiry_ref_num:         inquiry_ref_num
         }
       end
