@@ -38,7 +38,7 @@ module FidorApi
   autoload :Version,            'fidor_api/version'
 
   class Configuration
-    attr_accessor :callback_url, :oauth_url, :api_url, :api_path, :client_id, :client_secret, :htauth_user, :htauth_password, :affiliate_uid, :os_type, :logging, :logger, :verify_ssl
+    attr_accessor :callback_url, :oauth_url, :api_url, :api_path, :client_id, :client_secret, :htauth_user, :htauth_password, :affiliate_uid, :os_type, :logging, :logger, :verify_ssl, :default_headers_callback
   end
 
   def configure
@@ -55,6 +55,10 @@ module FidorApi
     rescue LoadError
       configuration.logger.debug "NOTE: Install `faraday-detailed_logger` gem to get detailed log-output for debugging."
     end
+  end
+
+  def default_headers
+    (FidorApi.configuration.default_headers_callback && FidorApi.configuration.default_headers_callback.call) || {}
   end
 end
 
