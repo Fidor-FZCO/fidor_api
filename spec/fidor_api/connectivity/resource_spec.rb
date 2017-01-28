@@ -56,5 +56,23 @@ module FidorApi
         end.to raise_error(FidorApi::ClientError, "Internal server error")
       end
     end
+
+    describe '#use default header in request' do
+      before do
+        FidorApi.configuration.default_headers_callback = Proc.new do
+          { a: "b" }
+        end
+      end
+
+      after do
+        FidorApi.configuration.default_headers_callback = nil
+      end
+
+      it 'incorporates default headers in requests' do
+        model.update_attributes(foo: 'foo2')
+        expect(WebMock).to have_requested(:put, /\/resource$/)
+          .with { |req| req.headers['A'] == 'b' }.once
+      end
+    end
   end
 end
