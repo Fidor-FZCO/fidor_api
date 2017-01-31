@@ -49,4 +49,13 @@ describe FidorApi::Account do
     end
   end
 
+  describe ".presence" do
+    it "confirms that email is existing" do
+      VCR.use_cassette("account/presence") do
+        result = FidorApi::Account.presence(email: 'kycfull@fidor.de')
+        expect(result).to eq true
+      end
+    end
+  end
+
 end

@@ -27,6 +27,11 @@ module FidorApi
       all(page: 1, per_page: 1).first
     end
 
+    def self.presence(params)
+      presence_endpoint = Connectivity::Endpoint.new('/accounts/presence', :resource, tokenless: true)
+      presence_endpoint.for(self).get(query_params: params, tokenless: true).body['present']
+    end
+
     def customers=(array)
       @customers = array.map { |customer| Customer.new(customer) }
     end
