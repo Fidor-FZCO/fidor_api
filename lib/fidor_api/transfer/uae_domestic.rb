@@ -5,16 +5,24 @@ module FidorApi
 
       validates :contact_name, presence: true, unless: :beneficiary_reference_passed?
 
+      attribute :destination,    :string
+      attribute :account_type,   :string
       attribute :account_number, :string
       attribute :swift_code,     :string
 
-      validates :account_number, presence: true, unless: :beneficiary_reference_passed?
-      validates :swift_code,     presence: true, unless: :beneficiary_reference_passed?
+      with_options unless: :beneficiary_reference_passed? do |inline|
+        inline.validates :destination,    presence: true, inclusion: { in: %w(internal external) }
+        inline.validates :account_type,   presence: true, inclusion: { in: %w(account card)      }
+        inline.validates :account_number, presence: true
+        inline.validates :swift_code,     presence: true
+      end
 
       attr_accessor :pending_transfer_id
 
       def set_attributes(attrs = {})
         set_beneficiary_attributes(attrs)
+        self.destination    = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["destination"]
+        self.account_type   = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["account_type"]
         self.account_number = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["account_number"]
         self.swift_code     = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["swift_code"]
         super(attrs.except("beneficiary"))
@@ -26,8 +34,10 @@ module FidorApi
 
       def as_json_routing_info
         {
+          destination:    destination,
+          account_type:   account_type,
           account_number: account_number,
-          swift_code: swift_code
+          swift_code:     swift_code
         }
       end
 
