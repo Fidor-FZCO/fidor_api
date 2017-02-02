@@ -30,6 +30,8 @@ describe FidorApi::Beneficiary::UaeDomestic do
         }.compact,
         "routing_type"     => "UAE_DOMESTIC",
         "routing_info" => {
+          "destination"    => "external",
+          "account_type"   => "account",
           "account_number" => "AE070331234567890123456",
           "swift_code"     => "ARABAEADSHJ"
         }.compact

@@ -14,6 +14,8 @@ describe FidorApi::Transfer::UaeDomestic do
       contact_address_line_1:  "Street 123",
       bank_name:               "Bank Name",
       bank_address_line_1:     "Street 456",
+      destination:             "external",
+      account_type:            "account",
       account_number:          "AE070331234567890123456",
       swift_code:              "ARABAEADSHJ",
       amount:                  BigDecimal.new("10.00"),
@@ -26,6 +28,8 @@ describe FidorApi::Transfer::UaeDomestic do
     it { is_expected.to validate_presence_of :account_id       }
     it { is_expected.to validate_presence_of :external_uid     }
     it { is_expected.to validate_presence_of :contact_name     }
+    it { is_expected.to validate_presence_of :destination      }
+    it { is_expected.to validate_presence_of :account_type     }
     it { is_expected.to validate_presence_of :account_number   }
     it { is_expected.to validate_presence_of :swift_code       }
     it { is_expected.to validate_presence_of :amount           }
@@ -85,7 +89,7 @@ describe FidorApi::Transfer::UaeDomestic do
       end
 
       it "successfully saves the transfer" do
-        expected_request_body = "{\"account_id\":\"29208706\",\"external_uid\":\"4279762F8\",\"amount\":1000,\"currency\":\"AED\",\"subject\":\"Money for you\",\"beneficiary\":{\"unique_name\":\"Johnny Doe\",\"contact\":{\"name\":\"John Doe\",\"address_line_1\":\"Street 123\"},\"bank\":{\"name\":\"Bank Name\",\"address_line_1\":\"Street 456\"},\"routing_type\":\"UAE_DOMESTIC\",\"routing_info\":{\"account_number\":\"AE070331234567890123456\",\"swift_code\":\"ARABAEADSHJ\"}}}"
+        expected_request_body = %q({"account_id":"29208706","external_uid":"4279762F8","amount":1000,"currency":"AED","subject":"Money for you","beneficiary":{"unique_name":"Johnny Doe","contact":{"name":"John Doe","address_line_1":"Street 123"},"bank":{"name":"Bank Name","address_line_1":"Street 456"},"routing_type":"UAE_DOMESTIC","routing_info":{"destination":"external","account_type":"account","account_number":"AE070331234567890123456","swift_code":"ARABAEADSHJ"}}})
 
         VCR.use_cassette("transfer/uae_domestic/save_pending_transfer", record: :once) do
           subject.save
@@ -111,10 +115,11 @@ describe FidorApi::Transfer::UaeDomestic do
           bank: {
             name:           "Bank Name",
             address_line_1: "Street 456"
-
           },
           routing_type: "UAE_DOMESTIC",
           routing_info: {
+            destination:    "external",
+            account_type:   "account",
             account_number: "AE070331234567890123456",
             swift_code:     "ARABAEADSHJ"
           }
