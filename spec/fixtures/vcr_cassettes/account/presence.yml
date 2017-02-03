@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://aps.fidor.de/accounts/presence?email=kycfull@fidor.de
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic Zmlkb3ItbW9iaWxlOm1vYmlsZSF3aXIhYmFuayQ=
+      Accept:
+      - application/vnd.fidor.de; version=1,text/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 31 Jan 2017 12:11:20 GMT
+      Server:
+      - Apache/2.4.6 (CentOS)
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Status:
+      - 200 OK
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"ac9c38df01925157286f2a5013f30116"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 2952b21d-2d56-464a-b7b9-2272d655b6f7
+      X-Runtime:
+      - '0.019593'
+      Via:
+      - 1.1 api.klika-sbox.fidor.de
+      Location:
+      - ''
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"present":true}'
+    http_version: 
+  recorded_at: Tue, 31 Jan 2017 12:11:20 GMT
+recorded_with: VCR 3.0.3
