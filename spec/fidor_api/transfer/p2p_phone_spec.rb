@@ -13,7 +13,8 @@ describe FidorApi::Transfer::P2pPhone do
       mobile_phone_number:     "+971 55 1234567",
       amount:                  BigDecimal.new("10.00"),
       currency:                "USD",
-      subject:                 "Money for you"
+      subject:                 "Money for you",
+      additional_attributes:   {"transfer_purpose" => "Computer services"}
     )
   end
 
@@ -22,7 +23,6 @@ describe FidorApi::Transfer::P2pPhone do
     it { is_expected.to validate_presence_of :external_uid        }
     it { is_expected.to validate_presence_of :mobile_phone_number }
     it { is_expected.to validate_presence_of :amount              }
-    it { is_expected.to validate_presence_of :subject             }
     it { is_expected.to_not validate_presence_of :contact_name    }
   end
 
@@ -60,7 +60,8 @@ describe FidorApi::Transfer::P2pPhone do
         },
         currency: "USD",
         external_uid: "4279762F8",
-        subject: "Money for you"
+        subject: "Money for you",
+        additional_attributes: {"transfer_purpose" => "Computer services"}
       )
     end
   end

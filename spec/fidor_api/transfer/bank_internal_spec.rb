@@ -3,21 +3,21 @@ require "spec_helper"
 describe FidorApi::Transfer::BankInternal do
   subject do
     FidorApi::Transfer::BankInternal.new(
-      account_id:              "29208706",
-      external_uid:            "4279762F8",
-      account_number:          "29208707",
-      amount:                  BigDecimal.new("10.00"),
-      currency:                "USD",
-      subject:                 "Money for you"
+      account_id:            "29208706",
+      external_uid:          "4279762F8",
+      account_number:        "29208707",
+      amount:                BigDecimal.new("10.00"),
+      currency:              "USD",
+      subject:               "Money for you",
+      additional_attributes: {"transfer_purpose" => "Computer services"}
     )
   end
 
   describe "validations" do
-    it { is_expected.to validate_presence_of :account_id       }
-    it { is_expected.to validate_presence_of :external_uid     }
-    it { is_expected.to validate_presence_of :account_number   }
-    it { is_expected.to validate_presence_of :amount           }
-    it { is_expected.to validate_presence_of :subject          }
+    it { is_expected.to validate_presence_of :account_id                   }
+    it { is_expected.to validate_presence_of :external_uid                 }
+    it { is_expected.to validate_presence_of :account_number               }
+    it { is_expected.to validate_presence_of :amount                       }
   end
 
   describe "#save" do
@@ -46,7 +46,8 @@ describe FidorApi::Transfer::BankInternal do
         },
         currency: "USD",
         external_uid: "4279762F8",
-        subject: "Money for you"
+        subject: "Money for you",
+        additional_attributes: {"transfer_purpose" => "Computer services"}
       )
     end
   end

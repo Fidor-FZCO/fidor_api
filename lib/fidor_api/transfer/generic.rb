@@ -16,9 +16,9 @@ module FidorApi
         base.attribute :subject,                 :string
         base.attribute :currency,                :string
         base.attribute :exchange_rate,           :string
-        base.attribute :subject,                 :string
         base.attribute :state,                   :string
-        base.amount_attribute :amount
+        base.attribute :additional_attributes,   :json
+        base.amount_attribute                    :amount
 
         base.attribute :beneficiary_unique_name, :string
         base.attribute :contact_name,            :string
@@ -40,7 +40,7 @@ module FidorApi
       end
 
       def self.required_attributes
-        [ :account_id, :external_uid, :amount, :subject, :currency ]
+        [ :account_id, :external_uid, :amount, :currency ]
       end
 
       def as_json
@@ -59,8 +59,9 @@ module FidorApi
           external_uid: external_uid,
           amount: (amount * 100).to_i,
           currency: currency,
-          subject: subject
-        }
+          subject: subject,
+          additional_attributes: additional_attributes
+        }.compact
       end
 
       def beneficiary_json_params
