@@ -14,5 +14,6 @@ module FidorApi
     autoload :Swift,            'fidor_api/transfer/swift'
     autoload :UaeDomestic,      'fidor_api/transfer/uae_domestic'
     autoload :Utility,          'fidor_api/transfer/utility'
+    autoload :Charity,          'fidor_api/transfer/charity'
   end
 end
