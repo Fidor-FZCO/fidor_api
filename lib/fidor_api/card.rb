@@ -32,7 +32,7 @@ module FidorApi
     end
 
     def self.writeable_attributes
-      required_attributes + %i(pin address)
+      required_attributes + %i(pin address inscription)
     end
 
     validates(*required_attributes, presence: true)
