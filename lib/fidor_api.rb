@@ -25,6 +25,7 @@ module FidorApi
   autoload :Customer,           'fidor_api/customer'
   autoload :Customers,          'fidor_api/customers/confirmations'
   autoload :Message,            'fidor_api/message'
+  autoload :NotificationOptions, 'fidor_api/notification_options'
   autoload :Msisdn,             'fidor_api/msisdn'
   autoload :Password,           'fidor_api/password'
   autoload :Preauth,            'fidor_api/preauth'
