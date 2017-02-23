@@ -115,10 +115,11 @@ module FidorApi
         fields.each do |hash|
           field = hash["field"].to_sym
           key   = hash["key"].try :to_sym
+          limit = hash["options"] && hash["options"]["limit"]
 
           if field == :base || respond_to?(field)
             if key
-              errors.add(field, key, message: hash["message"])
+              errors.add(field, key, message: hash["message"], limit: limit)
             else
               errors.add(field, hash["message"])
             end
