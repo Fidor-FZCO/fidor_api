@@ -3,7 +3,20 @@ module FidorApi
     class Base < Connectivity::Resource
       ROUTING_INFO_ERROR_PREFIX = "routing_info.".freeze
 
+      ROUTING_TYPE_CLASSES = {
+        "FOS_P2P_ACCOUNT_NUMBER" => "FidorApi::Beneficiary::P2pAccountNumber",
+        "FOS_P2P_PHONE"          => "FidorApi::Beneficiary::P2pPhone",
+        "FOS_P2P_USERNAME"       => "FidorApi::Beneficiary::P2pUsername",
+        "UAE_DOMESTIC"           => "FidorApi::Beneficiary::UaeDomestic",
+        "SWIFT"                  => "FidorApi::Beneficiary::Swift",
+        "UTILITY"                => "FidorApi::Beneficiary::Utility",
+      }
+
       self.endpoint = Connectivity::Endpoint.new('/beneficiaries', :collection)
+
+      def self.register_routing_type_class(routing_type:, klass:)
+        ROUTING_TYPE_CLASSES[routing_type] = klass
+      end
 
       attr_accessor :confirmable_action
 
@@ -24,14 +37,7 @@ module FidorApi
         private
 
         def class_for_response_hash(hash)
-          {
-            "FOS_P2P_ACCOUNT_NUMBER" => FidorApi::Beneficiary::P2pAccountNumber,
-            "FOS_P2P_PHONE"          => FidorApi::Beneficiary::P2pPhone,
-            "FOS_P2P_USERNAME"       => FidorApi::Beneficiary::P2pUsername,
-            "UAE_DOMESTIC"           => FidorApi::Beneficiary::UaeDomestic,
-            "SWIFT"                  => FidorApi::Beneficiary::Swift,
-            "UTILITY"                => FidorApi::Beneficiary::Utility
-          }.fetch(hash["routing_type"], FidorApi::Beneficiary::Unknown)
+          ROUTING_TYPE_CLASSES.fetch(hash["routing_type"], "FidorApi::Beneficiary::Unknown").constantize
         end
       end
 
