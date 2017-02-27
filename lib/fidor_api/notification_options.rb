@@ -2,7 +2,7 @@ module FidorApi
   class NotificationOptions < Connectivity::Resource
     extend ModelAttribute
 
-    self.endpoint = Connectivity::Endpoint.new('/accounts/:id/notification_options', :collection)
+    self.endpoint = Connectivity::Endpoint.new('/accounts/:id/notification_options', :resource)
 
     attribute :id, :integer
     attribute :ebox_message_document_email, :boolean
