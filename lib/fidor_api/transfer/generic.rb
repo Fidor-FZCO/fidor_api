@@ -60,7 +60,7 @@ module FidorApi
           amount: (amount * 100).to_i,
           currency: currency,
           subject: subject,
-          additional_attributes: additional_attributes
+          additional_attributes: as_json_additional_attributes
         }.compact
       end
 
@@ -93,6 +93,10 @@ module FidorApi
             create_beneficiary: create_beneficiary
           }.compact
         end
+      end
+
+      def as_json_additional_attributes
+        additional_attributes
       end
 
       def set_beneficiary_attributes(attrs)
