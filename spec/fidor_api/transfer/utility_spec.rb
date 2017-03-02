@@ -91,13 +91,13 @@ describe FidorApi::Transfer::Utility do
             utility_provider:       "Utility Provider",
             utility_service:        "Utility Service",
             utility_service_number: "12345678",
-            inquiry_ref_num:        "534Z2qoa1qig46d4",
             additional_fields:      nil
           }
         },
         currency: "USD",
         external_uid: "4279762D9",
-        subject: "Money for you"
+        subject: "Money for you",
+        additional_attributes: {"inquiry_ref_num"=>"534Z2qoa1qig46d4"}
       )
     end
   end
