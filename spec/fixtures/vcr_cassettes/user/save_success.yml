@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://aps.fidor.de/users
+    body:
+      encoding: UTF-8
+      string: '{"email":"test@tester.com","msisdn":"446457568","password":"12345678","affiliate_uid":"1398b907-8085-48d0-be1a-19397a86ef7f"}'
+    headers:
+      Authorization:
+      - Basic ZHVtbXk6c2VjcmV0
+      Accept:
+      - application/vnd.fidor.de; version=1,text/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - no-store, must-revalidate, private, max-age=0
+      X-Request-Id:
+      - 3e6ff052-b946-45c4-a10c-0aecaa37ed99
+      X-Runtime:
+      - '0.110374'
+      X-Miniprofiler-Ids:
+      - '["5gwm2xrq5dhnlcyuipbe","zgtok9rnoo22uycegjg6","wqw14i94clj9fz2mbpok","6ljtwb34h41bno17pqh7","t9qt2cr6ieghtg3ueoum","t45rg1iml7x8ns4vi6n5","ffg23hkhjbgy9bs5o5x8","p6a2kqehhqecpd03t8be","yryj1omifzz68c4ik3ta","zonu4b4kxwh7u784fum3","8tggg0k4ddlsp7yjjg0i","i8ugkl90kgl7gby9wr9v","wqszp8rc72y6vlou1jyz","r1vnrn1e2dwvjm8ys4ca","m4g3p5pem7xfpiysk79n","pm46eifc04a2ttqkm9u9","jr431bjhe35njp4jfdn9","hrextgom8dkkxxl4i94z","uanfqjehj3b55wz05msj","f5cumjygvaw9n7l7z7i"]'
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/
+      Connection:
+      - close
+      Server:
+      - thin
+    body:
+      encoding: UTF-8
+      string: '{"id":null,"email":"test@tester.com","msisdn_activated_at":null,"last_sign_in_at":null,"created_at":"2017-03-08T12:59:19Z","updated_at":"2017-03-08T12:59:19Z"}'
+    http_version: 
+  recorded_at: Wed, 08 Mar 2017 12:59:19 GMT
+recorded_with: VCR 3.0.3
