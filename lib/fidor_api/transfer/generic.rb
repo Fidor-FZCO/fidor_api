@@ -17,6 +17,7 @@ module FidorApi
         base.attribute :currency,                :string
         base.attribute :exchange_rate,           :string
         base.attribute :state,                   :string
+        base.attribute :exchange_rate_fee,       :string
         base.attribute :additional_attributes,   :json
         base.amount_attribute                    :amount
 
