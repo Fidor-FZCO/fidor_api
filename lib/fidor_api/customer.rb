@@ -70,6 +70,8 @@ module FidorApi
     attribute :community_user_picture,    :string
     attribute :country_of_birth,          :string
     attribute :additional_first_name,     :string
+    attribute :occupation,                :integer
+    attribute :birthplace,                :string
 
     def self.first
       all(page: 1, per_page: 1).first
