@@ -5,11 +5,11 @@ module FidorApi
     END_POINT = '/customer_confirmations'.freeze
 
     def create_confirmation_token(type, resource)
-      Connectivity::Connection.post(END_POINT, body: build_payload(type, resource))
+      Connectivity::Connection.post(END_POINT, body: build_payload(type, resource), tokenless: true, access_token: nil)
     end
 
     def confirm_resource(type, resource, code)
-      Connectivity::Connection.put(END_POINT, body: build_payload(type, resource, code))
+      Connectivity::Connection.put(END_POINT, body: build_payload(type, resource, code), tokenless: true, access_token: nil)
     end
 
     private
