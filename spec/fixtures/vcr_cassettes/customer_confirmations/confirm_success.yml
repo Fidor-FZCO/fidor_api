@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://aps.fidor.de/customer_confirmations
+    body:
+      encoding: UTF-8
+      string: '{"type":"mobile_phone","msisdn":"491666666666","token":"#MTAN#"}'
+    headers:
+      Authorization:
+      - Basic ZHVtbXk6c2VjcmV0
+      Accept:
+      - application/vnd.fidor.de; version=1,text/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - no-store, must-revalidate, private, max-age=0
+      X-Request-Id:
+      - 69445afe-6c56-489b-81d5-273ee5f061fa
+      X-Runtime:
+      - '0.437660'
+      X-Miniprofiler-Ids:
+      - '["89ylo8324874odcoknuk","wh14b8scol0sj4tpbsnm","vpl8k4xneic5nybyd82b","jtdfp545yuxkp0b02yzm","9hf3oobacsqslxppqfsl","r8tvpe48i5kf9cofyanm","7upazyd97vfbnvouwlrz","2tn3vd2vsby0q63rpuyz","88td3m0zkci9vmlazlbd","b20nesjrjrdnzcl0hlk3","mezl3804ovhzkjacw89j","sa15c7cc3isduwv5sqtj","weilpf21rbevythqqe1l","ybw03smfpse27c6xi3vw","cxbcg0rmk2n7tbjjyuef","vssadywylz9katpyxj8t","y5pmbc6dlkp2ukyriy6t","dar7vjynw4a4r91pq9ym","zztqv98tcawh1jhal4pa","hfxy7gihluhszcbd3x9m"]'
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/
+      Connection:
+      - close
+      Server:
+      - thin
+    body:
+      encoding: UTF-8
+      string: '{"type":"mobile_phone","confirmed":true}'
+    http_version: 
+  recorded_at: Fri, 10 Mar 2017 15:56:50 GMT
+recorded_with: VCR 3.0.3
