@@ -49,6 +49,14 @@ describe FidorApi::Account do
     end
   end
 
+  describe ".migrate_to_bancos" do
+    it "migrate the actual customer to bancos and returns its information" do
+      VCR.use_cassette("account/migrate_to_bancos", record: :once) do
+        FidorApi::Account.new.migrate_to_bancos
+      end
+    end
+  end
+
   describe ".presence" do
     it "confirms that email is existing" do
       VCR.use_cassette("account/presence") do
