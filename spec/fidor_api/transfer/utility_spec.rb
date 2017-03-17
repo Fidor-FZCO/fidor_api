@@ -97,7 +97,8 @@ describe FidorApi::Transfer::Utility do
         currency: "USD",
         external_uid: "4279762D9",
         subject: "Money for you",
-        additional_attributes: {"inquiry_ref_num"=>"534Z2qoa1qig46d4"}
+        additional_attributes: {"inquiry_ref_num"=>"534Z2qoa1qig46d4"},
+        validation_mode: "false"
       )
     end
   end
