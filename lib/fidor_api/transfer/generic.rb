@@ -38,6 +38,8 @@ module FidorApi
 
         base.attribute :created_at,              :time
         base.attribute :updated_at,              :time
+
+        base.attribute :validation_mode,         :boolean
       end
 
       def self.required_attributes
@@ -61,7 +63,8 @@ module FidorApi
           amount: (amount * 100).to_i,
           currency: currency,
           subject: subject,
-          additional_attributes: as_json_additional_attributes
+          additional_attributes: as_json_additional_attributes,
+          validation_mode: validation_mode ? "true" : "false"
         }.compact
       end
 

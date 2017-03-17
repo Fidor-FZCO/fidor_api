@@ -89,7 +89,8 @@ describe FidorApi::Transfer::ACH do
         },
         currency: "USD",
         external_uid: "4279762F8",
-        subject: "Money for you"
+        subject: "Money for you",
+        validation_mode: "false"
       )
     end
   end
