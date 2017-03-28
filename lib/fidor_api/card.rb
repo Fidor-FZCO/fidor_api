@@ -22,6 +22,7 @@ module FidorApi
     attribute :lock_reason,               :string
     attribute :disabled,                  :boolean
     attribute :address,                   :json
+    attribute :pan,                       :string
     attribute :created_at,                :time
     attribute :updated_at,                :time
 
