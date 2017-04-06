@@ -42,7 +42,11 @@ module FidorApi
         options.reverse_merge! version: 1, access_token: Connectivity.access_token
         response = faraday.public_send(method, [FidorApi.configuration.api_path, path].compact.join) do |request|
           request.params = options[:query_params] if options[:query_params]
-          request.headers = FidorApi.default_headers
+
+          headers = FidorApi.default_headers
+          headers.merge!(options[:headers].compact) if options[:headers]
+          request.headers = headers
+
           if options[:access_token]
             request.headers["Authorization"] = "Bearer #{options[:access_token]}"
           else
