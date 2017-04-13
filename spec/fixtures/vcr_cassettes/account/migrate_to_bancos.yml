@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://aps.fidor.de/accounts
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Authorization:
+      - Bearer 80376c36eb5085004eabbfd787f88222
+      Accept:
+      - application/vnd.fidor.de; version=1,text/json
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '0'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 16 Mar 2017 07:13:57 GMT
+      Status:
+      - 200 OK
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ratelimit-Limit:
+      - '10000'
+      X-Ratelimit-Remaining:
+      - '9992'
+      X-Ratelimit-Reset:
+      - '2764'
+      Etag:
+      - W/"3cac74b7ff3f9e593debc5a67562d167"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - b5c4d7d9-f331-43b9-8681-60d186e47164
+      X-Runtime:
+      - '2.443848'
+      via:
+      - 1.1 aps.fidor.de
+      Location:
+      - ''
+      X-Fidor-Api-Machine:
+      - api-sandbox02.fidor.intern
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":"86020246","account_number":"0072761715","iban":"DE74700222000072761715","balance":0,"balance_available":0,"bic":"FDDODEMMXXX","preauth_amount":0,"cash_flow_per_year":0,"is_debit_note_enabled":null,"is_trusted":null,"is_locked":false,"currency":"EUR","overdraft":0,"garnishee_protected":false,"created_at":"2017-03-16T07:12:51Z","updated_at":"2017-03-16T07:13:57Z","customers":[{"id":"86020246","email":"alexsotocx+newapi32@gmail.com","first_name":"AlexanderSotoC","last_name":"Soto
+        Cardona","additional_first_name":"Alexander","gender":"f","title":"Frau","nick":null,"maiden_name":"","adr_street":"Neubiberger
+        Str.","adr_street_number":"13","adr_post_code":"81737","adr_city":"Munich","birthplace":"Munich","adr_country":"DE","adr_phone":null,"adr_mobile":"49151205836932","adr_fax":null,"adr_businessphone":null,"birthday":"1994-01-25T00:00:00+00:00","is_verified":false,"nationality":"DE","marital_status":1,"occupation":1,"religion":0,"country_of_birth":"DE","preferred_language":"DE","id_card_registration_city":null,"id_card_number":null,"id_card_valid_until":null,"legal":{"tos":true,"privacy_policy":true,"own_interest":true,"us_citizen":false,"us_tax_payer":false},"newsletter":null,"affiliate_uid":"1398b907-8085-48d0-be1a-19397a86ef7f","community_user_picture":"http://community.test02.fidor.de/uploads/users/photos//default.jpg","created_at":"2017-03-16T07:12:51Z","account_type":"retail","customer_number":"7276171","updated_at":"2017-03-16T07:13:57Z"}]}'
+    http_version:
+  recorded_at: Thu, 16 Mar 2017 07:13:59 GMT
+recorded_with: VCR 3.0.3

@@ -2,10 +2,10 @@ require "spec_helper"
 
 describe FidorApi::User do
 
-  let(:client) { FidorApi::Client.new(token: token) }
-  let(:token)  { FidorApi::Token.new(access_token: "f859032a6ca0a4abb2be0583b8347937") }
-
   describe ".current" do
+    let(:client) { FidorApi::Client.new(token: token) }
+    let(:token)  { FidorApi::Token.new(access_token: "f859032a6ca0a4abb2be0583b8347937") }
+    
     it "returns information about the current user" do
       VCR.use_cassette("user/current", record: :once) do
         user = client.current_user
@@ -21,4 +21,17 @@ describe FidorApi::User do
     end
   end
 
+  describe "#save" do
+    it "creates new user" do
+      VCR.use_cassette("user/save_success", record: :once) do
+        user = FidorApi::User.new(
+          email: "test@tester.com",
+          msisdn: "446457568",
+          password: "12345678"
+        )
+
+        expect(user.save).to be true
+      end
+    end
+  end
 end

@@ -32,6 +32,10 @@ module FidorApi
       presence_endpoint.for(self).get(query_params: params, tokenless: true).body['present']
     end
 
+    def migrate_to_bancos
+      endpoint.for(self).post(tokenless: false)
+    end
+
     def customers=(array)
       @customers = array.map { |customer| Customer.new(customer) }
     end
