@@ -24,6 +24,7 @@ describe FidorApi::Card do
     expect(card.state).to              eq "card_registration_completed"
     expect(card.lock_reason).to        be_nil
     expect(card.disabled).to           be true
+    expect(card.pan).to                eq "**********1234"
     expect(card.created_at).to         eq DateTime.new(2015, 11, 3, 11,  7, 25)
     expect(card.updated_at).to         eq DateTime.new(2015, 11, 9, 10, 55,  6)
   end

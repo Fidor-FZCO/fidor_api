@@ -61,7 +61,8 @@ describe FidorApi::Transfer::P2pAccountNumber do
         currency: "USD",
         external_uid: "4279762F8",
         subject: "Money for you",
-        additional_attributes: {"transfer_purpose" => "Computer services"}
+        additional_attributes: {"transfer_purpose" => "Computer services"},
+        validation_mode: "false"
       )
     end
   end

@@ -91,15 +91,28 @@ describe FidorApi::Transfer::Utility do
             utility_provider:       "Utility Provider",
             utility_service:        "Utility Service",
             utility_service_number: "12345678",
-            inquiry_ref_num:        "534Z2qoa1qig46d4",
             additional_fields:      nil
           }
         },
         currency: "USD",
         external_uid: "4279762D9",
-        subject: "Money for you"
+        subject: "Money for you",
+        additional_attributes: {"inquiry_ref_num"=>"534Z2qoa1qig46d4"},
+        validation_mode: "false"
       )
     end
   end
 
+  describe ".find" do
+    it "returns a transfer object filled with data" do
+      VCR.use_cassette("transfer/utility/find", record: :once) do
+        transfer = described_class.find "13a414ce-1560-43e7-870f-c43829b9d589"
+
+        expect(transfer).to be_instance_of described_class
+        expect(transfer.id).to              eq "13a414ce-1560-43e7-870f-c43829b9d589"
+        expect(transfer.utility_service).to eq "Utility Service"
+        expect(transfer.inquiry_ref_num).to eq "Inquiry Ref Num"
+      end
+    end
+  end
 end

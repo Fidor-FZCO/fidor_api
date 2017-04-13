@@ -96,7 +96,8 @@ describe FidorApi::Transfer::Charity do
         },
         currency: "USD",
         external_uid: "4279762D9",
-        subject: "Money for you"
+        subject: "Money for you",
+        validation_mode: "false"
       )
     end
   end

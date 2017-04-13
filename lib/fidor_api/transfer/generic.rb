@@ -17,6 +17,7 @@ module FidorApi
         base.attribute :currency,                :string
         base.attribute :exchange_rate,           :string
         base.attribute :state,                   :string
+        base.attribute :exchange_rate_fee,       :string
         base.attribute :additional_attributes,   :json
         base.amount_attribute                    :amount
 
@@ -37,6 +38,8 @@ module FidorApi
 
         base.attribute :created_at,              :time
         base.attribute :updated_at,              :time
+
+        base.attribute :validation_mode,         :boolean
       end
 
       def self.required_attributes
@@ -60,7 +63,8 @@ module FidorApi
           amount: (amount * 100).to_i,
           currency: currency,
           subject: subject,
-          additional_attributes: additional_attributes
+          additional_attributes: as_json_additional_attributes,
+          validation_mode: validation_mode ? "true" : "false"
         }.compact
       end
 
@@ -93,6 +97,10 @@ module FidorApi
             create_beneficiary: create_beneficiary
           }.compact
         end
+      end
+
+      def as_json_additional_attributes
+        additional_attributes
       end
 
       def set_beneficiary_attributes(attrs)

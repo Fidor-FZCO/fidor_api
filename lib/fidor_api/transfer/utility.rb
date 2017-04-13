@@ -19,7 +19,9 @@ module FidorApi
         self.utility_service         = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["utility_service"]
         self.utility_service_number  = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["utility_service_number"]
         self.additional_fields       = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["additional_fields"]
-        self.inquiry_ref_num         = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["inquiry_ref_num"]
+
+        self.inquiry_ref_num = attrs.fetch("additional_attributes", {})["inquiry_ref_num"]
+
         super(attrs.except("routing_type", "routing_info"))
       end
 
@@ -29,12 +31,15 @@ module FidorApi
 
       def as_json_routing_info
         {
-          utility_provider:        utility_provider,
-          utility_service:         utility_service,
-          utility_service_number:  utility_service_number,
-          additional_fields:       additional_fields,
-          inquiry_ref_num:         inquiry_ref_num
+          utility_provider:       utility_provider,
+          utility_service:        utility_service,
+          utility_service_number: utility_service_number,
+          additional_fields:      additional_fields
         }
+      end
+
+      def as_json_additional_attributes
+        (additional_attributes || {}).merge("inquiry_ref_num" => inquiry_ref_num)
       end
 
       private
