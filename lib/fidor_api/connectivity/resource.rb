@@ -72,7 +72,7 @@ module FidorApi
 
           if field == :base || respond_to?(field)
             if key
-              options.merge!({ message: hash["message"], count: hash["count"] }.compact)
+              options[:count] = hash["count"] if hash["count"]
               errors.add(field, key, options.symbolize_keys)
             else
               errors.add(field, hash["message"])
