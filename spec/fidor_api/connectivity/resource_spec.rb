@@ -59,6 +59,19 @@ module FidorApi
       end
     end
 
+    describe '#save failure when there is no response (e.g. because connection failed)' do
+      before do
+        # abuse FidorApi::Connectivity to inject an early error
+        expect(FidorApi::Connectivity).to receive(:access_token).and_raise(Faraday::ClientError.new("Failed to open TCP connection"))
+      end
+
+      it 'raises a ClientError' do
+        expect do
+          model.save
+        end.to raise_error(FidorApi::ClientError)
+      end
+    end
+
     describe '#use default header in request' do
       before do
         FidorApi.configuration.default_headers_callback = Proc.new do
