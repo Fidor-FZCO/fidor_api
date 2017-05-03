@@ -14,10 +14,10 @@ describe FidorApi::Transfer::BankInternal do
   end
 
   describe "validations" do
-    it { is_expected.to validate_presence_of :account_id                   }
-    it { is_expected.to validate_presence_of :external_uid                 }
-    it { is_expected.to validate_presence_of :account_number               }
-    it { is_expected.to validate_presence_of :amount                       }
+    it { is_expected.to validate_presence_of :account_id     }
+    it { is_expected.to validate_presence_of :external_uid   }
+    it { is_expected.to validate_presence_of :account_number }
+    it { is_expected.to validate_presence_of :amount         }
   end
 
   describe "#save" do
