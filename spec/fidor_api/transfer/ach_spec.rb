@@ -29,7 +29,6 @@ describe FidorApi::Transfer::ACH do
     it { is_expected.to validate_presence_of :account_number   }
     it { is_expected.to validate_presence_of :routing_code     }
     it { is_expected.to validate_presence_of :amount           }
-    it { is_expected.to validate_presence_of :subject          }
   end
 
   describe "#save" do

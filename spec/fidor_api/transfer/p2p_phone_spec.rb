@@ -22,7 +22,6 @@ describe FidorApi::Transfer::P2pPhone do
     it { is_expected.to validate_presence_of :external_uid        }
     it { is_expected.to validate_presence_of :mobile_phone_number }
     it { is_expected.to validate_presence_of :amount              }
-    it { is_expected.to validate_presence_of :subject             }
     it { is_expected.to_not validate_presence_of :contact_name    }
   end
 

@@ -22,7 +22,6 @@ describe FidorApi::Transfer::P2pAccountNumber do
     it { is_expected.to validate_presence_of :external_uid        }
     it { is_expected.to validate_presence_of :account_number      }
     it { is_expected.to validate_presence_of :amount              }
-    it { is_expected.to validate_presence_of :subject             }
     it { is_expected.to_not validate_presence_of :contact_name    }
   end
 
