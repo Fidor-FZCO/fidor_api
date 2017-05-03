@@ -35,7 +35,6 @@ describe FidorApi::Transfer::Utility do
     it { is_expected.to validate_presence_of :utility_service_number }
     it { is_expected.to validate_presence_of :inquiry_ref_num        }
     it { is_expected.to validate_presence_of :amount                 }
-    it { is_expected.to validate_presence_of :subject                }
   end
 
   describe "#save" do

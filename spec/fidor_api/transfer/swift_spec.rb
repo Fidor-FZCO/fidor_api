@@ -35,7 +35,6 @@ describe FidorApi::Transfer::Swift do
     it { is_expected.to validate_presence_of :swift_code       }
     it { is_expected.to validate_presence_of :account_currency }
     it { is_expected.to validate_presence_of :amount           }
-    it { is_expected.to validate_presence_of :subject          }
   end
 
   describe "#save" do
