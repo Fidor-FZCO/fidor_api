@@ -6,7 +6,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"account_id":"29208706","external_uid":"4279762F8","amount":1000,"currency":"USD","subject":"Money
-        for you","beneficiary":{"unique_name":"Johnny Doe","contact":{},"bank":{},"routing_type":"FOS_P2P_PHONE","routing_info":{"mobile_phone_number":"+971
+        for you","additional_attributes":{"transfer_purpose":"Computer services"},"beneficiary":{"unique_name":"Johnny Doe","contact":{},"bank":{},"routing_type":"FOS_P2P_PHONE","routing_info":{"mobile_phone_number":"+971
         55 1234567"}}}'
     headers:
       Authorization:
@@ -39,7 +39,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"account_id":"29208706","external_uid":"4279762F8","amount":1000,"currency":"USD","subject":"Money
-        for you","beneficiary":{"contact":{"name":"John Doe"},"routing_type":"FOS_P2P_PHONE","routing_info":{"mobile_phone_number":"+97155 1234567"}}}'
+        for you","additional_attributes":{"transfer_purpose":"Computer services"},"beneficiary":{"contact":{"name":"John Doe"},"routing_type":"FOS_P2P_PHONE","routing_info":{"mobile_phone_number":"+97155 1234567"}}}'
     http_version:
   recorded_at: Mon, 22 Aug 2016 12:34:03 GMT
 recorded_with: VCR 2.9.3
