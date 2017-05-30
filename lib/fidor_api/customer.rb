@@ -72,6 +72,7 @@ module FidorApi
     attribute :additional_first_name,     :string
     attribute :occupation,                :integer
     attribute :birthplace,                :string
+    attribute :invited_by_id,             :string
 
     def self.first
       all(page: 1, per_page: 1).first
