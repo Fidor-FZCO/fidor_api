@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://aps.fidor.de/notifications/push
+    body:
+      encoding: UTF-8
+      string: '{"type": "account_completed_sms"}'
+    headers:
+      Authorization:
+      - Bearer f859032a6ca0a4abb2be0583b8347937
+      Accept:
+      - application/vnd.fidor.de; version=1,text/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Thu, 01 Jun 2017 10:27:55 GMT
+      Status:
+      - 202 Accepted
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 9b4c2d81-3a55-4713-ba5d-df85454c30e4
+      X-Runtime:
+      - '0.007415'
+      Via:
+      - 1.1 aps.fidor.de
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"customer_id": "42","type": "account_completed_sms"}'
+    http_version: 
+  recorded_at: Thu, 01 Jun 2017 10:27:55 GMT
+recorded_with: VCR 3.0.3

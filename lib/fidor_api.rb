@@ -38,6 +38,7 @@ module FidorApi
   autoload :Transfer,             'fidor_api/transfer'
   autoload :User,                 'fidor_api/user'
   autoload :Version,              'fidor_api/version'
+  autoload :Notification,         'fidor_api/notification'
 
   class Configuration
     attr_accessor :callback_url, :oauth_url, :api_url, :api_path, :client_id, :client_secret, :htauth_user, :htauth_password, :affiliate_uid, :os_type, :logging, :logger, :verify_ssl, :default_headers_callback
