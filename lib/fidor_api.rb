@@ -15,6 +15,7 @@ module FidorApi
   autoload :ApprovalRequired,     'fidor_api/approval_required'
   autoload :Auth,                 'fidor_api/auth'
   autoload :Beneficiary,          'fidor_api/beneficiary'
+  autoload :Bonus,                'fidor_api/bonus'
   autoload :Card,                 'fidor_api/card'
   autoload :CardLimitAttribute,   'fidor_api/card_limit_attribute'
   autoload :CardLimits,           'fidor_api/card_limits'
