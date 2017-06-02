@@ -22,10 +22,12 @@ module FidorApi
           class_to_instantiate.new(record)
         end
 
-        object.total_pages   = collection["total_pages"]
-        object.current_page  = collection["current_page"]
-        object.limit_value   = collection["per_page"]
-        object.total_entries = collection["total_entries"]
+        if collection
+          object.total_pages   = collection["total_pages"]
+          object.current_page  = collection["current_page"]
+          object.limit_value   = collection["per_page"]
+          object.total_entries = collection["total_entries"]
+        end
       end
     end
 
