@@ -1,12 +1,13 @@
 module FidorApi
   module Connectivity
     class Endpoint
-      attr_reader :collection, :resource, :version, :anonymous
+      attr_reader :collection, :resource, :version, :anonymous, :mode
 
       def initialize(path, mode, version: '1', anonymous: false)
         @path = path
         @version = version
         @anonymous = anonymous
+        @mode = mode
 
         case mode
         when :collection
@@ -29,7 +30,7 @@ module FidorApi
           request :get, target, action, query_params: query_params, anonymous: anonymous
         end
 
-        def post(target: :collection, action: nil, payload: nil, anonymous: nil)
+        def post(target: @endpoint.mode, action: nil, payload: nil, anonymous: nil)
           request :post, target, action, body: payload, anonymous: anonymous
         end
 
