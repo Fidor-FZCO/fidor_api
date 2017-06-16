@@ -4,15 +4,18 @@ module FidorApi
 
     self.endpoint = Connectivity::Endpoint.new('/users', :collection)
 
-    attribute :id,                  :integer
-    attribute :email,               :string
-    attribute :msisdn,              :string
-    attribute :password,            :string
-    attribute :affiliate_uid,       :string
-    attribute :msisdn_activated_at, :time
-    attribute :last_sign_in_at,     :string
-    attribute :created_at,          :time
-    attribute :updated_at,          :time
+    attribute :id,                      :integer
+    attribute :email,                   :string
+    attribute :msisdn,                  :string
+    attribute :password,                :string
+    attribute :affiliate_uid,           :string
+    attribute :msisdn_activated_at,     :time
+    attribute :last_sign_in_at,         :string
+    attribute :created_at,              :time
+    attribute :updated_at,              :time
+    attribute :friend_count,            :integer
+    attribute :friend_of_friend_count,  :integer
+
 
     def initialize(*args)
       super

@@ -17,6 +17,8 @@ describe FidorApi::User do
         expect(user.last_sign_in_at).to     be_nil
         expect(user.created_at).to          eq Time.new(2015, 8, 26, 15, 43, 30, "+00:00")
         expect(user.updated_at).to          eq Time.new(2015, 8, 26, 15, 43, 30, "+00:00")
+        expect(user.friend_count).to        eq 1
+        expect(user.friend_of_friend_count).to eq 1
       end
     end
   end
