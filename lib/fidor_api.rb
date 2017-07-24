@@ -38,10 +38,6 @@ module FidorApi
   autoload :User,                 'fidor_api/user'
   autoload :Version,              'fidor_api/version'
 
-  class Configuration
-    attr_accessor :callback_url, :oauth_url, :api_url, :api_path, :client_id, :client_secret, :htauth_user, :htauth_password, :affiliate_uid, :os_type, :logging, :logger, :verify_ssl, :default_headers_callback
-  end
-
   def configure
     self.configuration = Configuration.new.tap do |config|
       config.logging    = true
@@ -65,3 +61,4 @@ end
 
 require "fidor_api/errors"
 require "fidor_api/constants"
+require 'fidor_api/configuration'

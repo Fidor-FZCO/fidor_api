@@ -5,6 +5,7 @@ module FidorApi
   UnauthorizedTokenError = Class.new(Error)
   InvalidRecordError     = Class.new(Error)
   NoUpdatesAllowedError  = Class.new(Error)
+  ConfigurationError     = Class.new(Error)
 
   class ForbiddenError < Error
     attr_accessor :code, :key
