@@ -21,6 +21,7 @@ module FidorApi
   autoload :CardLimits,            'fidor_api/card_limits'
   autoload :Client,                'fidor_api/client'
   autoload :Collection,            'fidor_api/collection'
+  autoload :Configuration,         'fidor_api/configuration'
   autoload :ConfirmableAction,     'fidor_api/confirmable_action'
   autoload :CustomerConfirmations, 'fidor_api/customer_confirmations'
   autoload :Connectivity,          'fidor_api/connectivity'
@@ -41,31 +42,6 @@ module FidorApi
   autoload :User,                  'fidor_api/user'
   autoload :Version,               'fidor_api/version'
   autoload :Notification,          'fidor_api/notification'
-
-  class Configuration
-    attr_accessor \
-      :affiliate_uid,
-      :anonymous_auth,
-      :api_path,
-      :api_url,
-      :callback_url,
-      :client_id,
-      :client_secret,
-      :default_headers_callback,
-      :htauth_password,
-      :htauth_user,
-      :logger,
-      :logging,
-      :oauth_url,
-      :os_type,
-      :verify_ssl
-
-    def anonymous_auth=(value)
-      allowed = [:htauth, :oauth_client]
-      raise "Invalid value for `anonymous_auth` option. Must be one of #{allowed.inspect}" unless value.in? allowed
-      @anonymous_auth = value
-    end
-  end
 
   def configure
     self.configuration = Configuration.new.tap do |config|
