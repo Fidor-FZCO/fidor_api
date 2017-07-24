@@ -14,6 +14,7 @@ module FidorApi
         base.attribute :account_id,              :string
         base.attribute :external_uid,            :string
         base.attribute :subject,                 :string
+        base.attribute :scheduled_date,          :string
         base.attribute :currency,                :string
         base.attribute :exchange_rate,           :string
         base.attribute :state,                   :string
@@ -60,6 +61,7 @@ module FidorApi
           amount: (amount * 100).to_i,
           currency: currency,
           subject: subject,
+          scheduled_date: scheduled_date,
           additional_attributes: additional_attributes
         }.compact
       end
