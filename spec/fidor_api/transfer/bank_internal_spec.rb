@@ -9,6 +9,7 @@ describe FidorApi::Transfer::BankInternal do
       amount:                BigDecimal.new("10.00"),
       currency:              "USD",
       subject:               "Money for you",
+      scheduled_date:        "2017-07-24",
       additional_attributes: {"transfer_purpose" => "Computer services"}
     )
   end
@@ -47,6 +48,7 @@ describe FidorApi::Transfer::BankInternal do
         currency: "USD",
         external_uid: "4279762F8",
         subject: "Money for you",
+        scheduled_date: "2017-07-24",
         additional_attributes: {"transfer_purpose" => "Computer services"}
       )
     end
