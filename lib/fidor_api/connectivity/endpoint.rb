@@ -30,12 +30,12 @@ module FidorApi
           request :get, target, action, query_params: query_params, anonymous: anonymous
         end
 
-        def post(target: @endpoint.mode, action: nil, payload: nil, anonymous: nil)
-          request :post, target, action, body: payload, anonymous: anonymous
+        def post(target: @endpoint.mode, action: nil, payload: nil, anonymous: nil, query_params: nil)
+          request :post, target, action, body: payload, anonymous: anonymous, query_params: query_params
         end
 
-        def put(target: :resource, action: nil, payload: nil, anonymous: nil)
-          request :put, target, action, body: payload, anonymous: anonymous
+        def put(target: :resource, action: nil, payload: nil, anonymous: nil, query_params: nil)
+          request :put, target, action, body: payload, anonymous: anonymous, query_params: query_params
         end
 
         def delete(target: :resource, action: nil, anonymous: nil)
