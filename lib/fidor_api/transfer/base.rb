@@ -14,9 +14,21 @@ module FidorApi
         self.confirmable_action.present?
       end
 
+      def validate_remote
+        params = { query_params: { validation_mode: true } }
+        response = persisted? ? remote_update(params) : remote_create(params)
+
+        set_attributes(response.body)
+        true
+      rescue ValidationError => e
+        self.error_keys = e.error_keys
+        map_errors(e.fields)
+        false
+      end
+
       private
 
-      def remote_create
+      def remote_create(params = {})
         response = super
         if path = response.headers["X-Fidor-Confirmation-Path"]
           self.confirmable_action = ConfirmableAction.new(id: path.split("/").last)

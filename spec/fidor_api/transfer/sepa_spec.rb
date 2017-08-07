@@ -59,6 +59,32 @@ describe FidorApi::Transfer::SEPA do
     end
   end
 
+  describe '#validate_remote' do
+    context 'on new record' do
+      context 'on success' do
+        it 'returns true and updates the attributes with received data' do
+          VCR.use_cassette('transfer/validate_save_success', record: :once) do
+            expect(subject.validate_remote).to be true
+
+            expect(subject.id).to eq 10_548
+            expect(subject.state).to eq 'received'
+          end
+        end
+      end
+
+      context 'on failure response' do
+        it 'returns false and provides errors' do
+          subject.account_id = 999
+
+          VCR.use_cassette('transfer/validate_save_failure', record: :once) do
+            expect(subject.validate_remote).to be false
+            expect(subject.errors[:account_id]).to eq ['anything']
+          end
+        end
+      end
+    end
+  end
+
   describe "#as_json" do
     it "returns all writeable fields" do
       expect(subject.as_json).to eq(
