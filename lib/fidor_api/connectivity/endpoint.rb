@@ -30,12 +30,12 @@ module FidorApi
           request :get, target, action, query_params: query_params, tokenless: tokenless
         end
 
-        def post(target: @endpoint.mode, action: nil, payload: nil, tokenless: nil)
-          request :post, target, action, body: payload, tokenless: tokenless
+        def post(target: @endpoint.mode, action: nil, payload: nil, tokenless: nil, query_params: nil)
+          request :post, target, action, body: payload, tokenless: tokenless, query_params: query_params
         end
 
-        def put(target: :resource, action: nil, payload: nil, tokenless: nil)
-          request :put, target, action, body: payload, tokenless: tokenless
+        def put(target: :resource, action: nil, payload: nil, tokenless: nil, query_params: nil)
+          request :put, target, action, body: payload, tokenless: tokenless, query_params: query_params
         end
 
         def delete(target: :resource, action: nil, tokenless: nil)
