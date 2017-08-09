@@ -65,9 +65,6 @@ describe FidorApi::Transfer::SEPA do
         it 'returns true and updates the attributes with received data' do
           VCR.use_cassette('transfer/validate_save_success', record: :once) do
             expect(subject.validate_remote).to be true
-
-            expect(subject.id).to eq 10_548
-            expect(subject.state).to eq 'received'
           end
         end
       end
