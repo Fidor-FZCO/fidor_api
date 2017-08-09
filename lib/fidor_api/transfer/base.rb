@@ -16,9 +16,8 @@ module FidorApi
 
       def validate_remote
         params = { query_params: { validation_mode: true } }
-        response = persisted? ? remote_update(params) : remote_create(params)
+        persisted? ? remote_update(params) : remote_create(params)
 
-        set_attributes(response.body)
         true
       rescue ValidationError => e
         self.error_keys = e.error_keys
