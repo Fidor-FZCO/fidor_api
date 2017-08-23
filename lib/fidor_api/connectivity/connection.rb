@@ -94,7 +94,7 @@ module FidorApi
       end
 
       def anonymous_auth_header
-        if FidorApi.configuration.anonymous_endpoint_auth == :oauth2_client_credentials
+        if FidorApi.configuration.anonymous_auth == :oauth_client
           oauth2_client_token_header
         else
           tokenless_http_basic_header

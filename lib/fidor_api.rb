@@ -44,7 +44,7 @@ module FidorApi
   class Configuration
     attr_accessor \
       :affiliate_uid,
-      :anonymous_endpoint_auth,
+      :anonymous_auth,
       :api_path,
       :api_url,
       :callback_url,
@@ -59,20 +59,20 @@ module FidorApi
       :os_type,
       :verify_ssl
 
-    def anonymous_endpoint_auth=(value)
-      allowed = [:htauth, :oauth2_client_credentials]
-      raise "Invalid value for `anonymous_endpoint_auth` option. Must be one of #{allowed.inspect}" unless value.in? allowed
-      @anonymous_endpoint_auth = value
+    def anonymous_auth=(value)
+      allowed = [:htauth, :oauth_client]
+      raise "Invalid value for `anonymous_auth` option. Must be one of #{allowed.inspect}" unless value.in? allowed
+      @anonymous_auth = value
     end
   end
 
   def configure
     self.configuration = Configuration.new.tap do |config|
-      config.logging                  = true
-      config.logger                   = Logger.new(STDOUT)
-      config.os_type                  = "iOS"
-      config.verify_ssl               = true
-      config.anonymous_endpoint_auth  = :htauth
+      config.logging         = true
+      config.logger          = Logger.new(STDOUT)
+      config.os_type         = "iOS"
+      config.verify_ssl      = true
+      config.anonymous_auth  = :htauth
     end
 
     yield configuration
