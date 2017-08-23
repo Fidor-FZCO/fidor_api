@@ -42,16 +42,39 @@ module FidorApi
   autoload :Notification,         'fidor_api/notification'
 
   class Configuration
-    attr_accessor :callback_url, :oauth_url, :api_url, :api_path, :client_id, :client_secret, :htauth_user, :htauth_password, :affiliate_uid, :os_type, :logging, :logger, :verify_ssl, :default_headers_callback
+    attr_accessor \
+      :affiliate_uid,
+      :anonymous_endpoint_auth,
+      :api_path,
+      :api_url,
+      :callback_url,
+      :client_id,
+      :client_secret,
+      :default_headers_callback,
+      :htauth_password,
+      :htauth_user,
+      :logger,
+      :logging,
+      :oauth_url,
+      :os_type,
+      :verify_ssl
+
+    def anonymous_endpoint_auth=(value)
+      allowed = [:htauth, :oauth2_client_credentials]
+      raise "Invalid value for `anonymous_endpoint_auth` option. Must be one of #{allowed.inspect}" unless value.in? allowed
+      @anonymous_endpoint_auth = value
+    end
   end
 
   def configure
     self.configuration = Configuration.new.tap do |config|
-      config.logging    = true
-      config.logger     = Logger.new(STDOUT)
-      config.os_type    = "iOS" # NOTE: As long as there is only iOS or Android we have to tell a fib ;)
-      config.verify_ssl = true
+      config.logging                  = true
+      config.logger                   = Logger.new(STDOUT)
+      config.os_type                  = "iOS"
+      config.verify_ssl               = true
+      config.anonymous_endpoint_auth  = :htauth
     end
+
     yield configuration
 
     begin

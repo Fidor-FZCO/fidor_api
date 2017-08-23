@@ -1,12 +1,12 @@
 module FidorApi
   module Connectivity
     class Endpoint
-      attr_reader :collection, :resource, :version, :tokenless
+      attr_reader :collection, :resource, :version, :anonymous
 
-      def initialize(path, mode, version: '1', tokenless: false)
+      def initialize(path, mode, version: '1', anonymous: false)
         @path = path
         @version = version
-        @tokenless = tokenless
+        @anonymous = anonymous
 
         case mode
         when :collection
@@ -25,27 +25,27 @@ module FidorApi
           @object = object
         end
 
-        def get(target: :resource, action: nil, query_params: nil, tokenless: nil)
-          request :get, target, action, query_params: query_params, tokenless: tokenless
+        def get(target: :resource, action: nil, query_params: nil, anonymous: nil)
+          request :get, target, action, query_params: query_params, anonymous: anonymous
         end
 
-        def post(target: :collection, action: nil, payload: nil, tokenless: nil)
-          request :post, target, action, body: payload, tokenless: tokenless
+        def post(target: :collection, action: nil, payload: nil, anonymous: nil)
+          request :post, target, action, body: payload, anonymous: anonymous
         end
 
-        def put(target: :resource, action: nil, payload: nil, tokenless: nil)
-          request :put, target, action, body: payload, tokenless: tokenless
+        def put(target: :resource, action: nil, payload: nil, anonymous: nil)
+          request :put, target, action, body: payload, anonymous: anonymous
         end
 
-        def delete(target: :resource, action: nil, tokenless: nil)
-          request :delete, target, action, tokenless: tokenless
+        def delete(target: :resource, action: nil, anonymous: nil)
+          request :delete, target, action, anonymous: anonymous
         end
 
         private
 
         def request(method, target, action, options = {})
           options.reverse_merge! version: @endpoint.version
-          options[:access_token] = nil if options[:tokenless] || @endpoint.tokenless
+          options[:access_token] = nil if options[:anonymous] || @endpoint.anonymous
           Connection.public_send(method, send("#{target}_path", action), options)
         end
 

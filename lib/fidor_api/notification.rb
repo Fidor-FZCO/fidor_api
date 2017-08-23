@@ -12,7 +12,7 @@ module FidorApi
 
     def notify(type)
       self.type = type
-      endpoint.for(self).post(payload: create_payload, tokenless: false)
+      endpoint.for(self).post(payload: create_payload, anonymous: false)
     end
 
     private

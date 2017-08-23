@@ -28,12 +28,12 @@ module FidorApi
     end
 
     def self.presence(params)
-      presence_endpoint = Connectivity::Endpoint.new('/accounts/presence', :resource, tokenless: true)
-      presence_endpoint.for(self).get(query_params: params, tokenless: true).body['present']
+      presence_endpoint = Connectivity::Endpoint.new('/accounts/presence', :resource, anonymous: true)
+      presence_endpoint.for(self).get(query_params: params, anonymous: true).body['present']
     end
 
     def migrate_to_bancos
-      endpoint.for(self).post(tokenless: false)
+      endpoint.for(self).post(anonymous: false)
     end
 
     def customers=(array)

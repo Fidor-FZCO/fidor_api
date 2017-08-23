@@ -150,7 +150,7 @@ describe FidorApi::Customer do
         context "on success" do
           it "returns true and sets the id on the object" do
             VCR.use_cassette("customer/tokenful/create_success", record: :once, match_requests_on: [:method, :uri, :headers, :body]) do
-              expect(subject.save(tokenless: false)).to be true
+              expect(subject.save(anonymous: false)).to be true
               expect(subject.id).to eq 42
             end
           end
@@ -159,7 +159,7 @@ describe FidorApi::Customer do
         context "on failure" do
           it "raises an error" do
             VCR.use_cassette("customer/tokenful/create_failure", record: :once, match_requests_on: [:method, :uri, :headers, :body]) do
-              expect(subject.save(tokenless: false)).to be false
+              expect(subject.save(anonymous: false)).to be false
               expect(subject.errors[:preferred_language]).to eq ["is invalid"]
             end
           end

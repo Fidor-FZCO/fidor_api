@@ -113,9 +113,9 @@ module FidorApi
       attributes.tap { |a| a[:birthday] = a[:birthday].try(:to_date) }
     end
 
-    def save(tokenless: true)
+    def save(anonymous: true)
       return false unless valid?
-      set_attributes(persisted? ? remote_update.body : remote_create(tokenless).body)
+      set_attributes(persisted? ? remote_update.body : remote_create(anonymous).body)
       true
     rescue ValidationError => e
       self.error_keys = e.error_keys
@@ -125,8 +125,8 @@ module FidorApi
 
     private
 
-    def remote_create(tokenless)
-      endpoint.for(self).post(payload: self.as_json, tokenless: tokenless)
+    def remote_create(anonymous)
+      endpoint.for(self).post(payload: self.as_json, anonymous: anonymous)
     end
 
     module ClientSupport

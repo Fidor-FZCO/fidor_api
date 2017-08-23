@@ -14,6 +14,7 @@ module FidorApi
         code:         code,
         grant_type:   "authorization_code"
       }
+
       Token.new JSON.parse(response.body)
     end
 
@@ -22,6 +23,13 @@ module FidorApi
         grant_type:    "refresh_token",
         refresh_token: token.refresh_token
       }
+
+      Token.new JSON.parse(response.body)
+    end
+
+    def client_token
+      response = connection.post "/oauth/token", { grant_type: "client_credentials" }
+
       Token.new JSON.parse(response.body)
     end
 

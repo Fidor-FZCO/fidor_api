@@ -29,7 +29,7 @@ module FidorApi
     private
 
     def remote_create
-      endpoint.for(self).post(payload: create_payload, tokenless: true)
+      endpoint.for(self).post(payload: create_payload, anonymous: true)
     end
 
     def create_payload

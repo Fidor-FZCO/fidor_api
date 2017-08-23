@@ -44,7 +44,7 @@ module FidorApi
           if options[:access_token]
             request.headers["Authorization"] = "Bearer #{options[:access_token]}"
           else
-            request.headers["Authorization"] = tokenless_http_basic_header
+            request.headers["Authorization"] = anonymous_auth_header
           end
           request.headers["Accept"]        = "application/vnd.fidor.de; version=#{options[:version]},text/json"
           request.headers["Content-Type"]  = "application/json"
@@ -91,6 +91,18 @@ module FidorApi
         else
           :logger
         end
+      end
+
+      def anonymous_auth_header
+        if FidorApi.configuration.anonymous_endpoint_auth == :oauth2_client_credentials
+          oauth2_client_token_header
+        else
+          tokenless_http_basic_header
+        end
+      end
+
+      def oauth2_client_token_header
+        "Bearer #{FidorApi::Auth.client_token.access_token}"
       end
 
       def tokenless_http_basic_header
