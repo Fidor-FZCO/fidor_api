@@ -3,6 +3,11 @@ module FidorApi
   module Auth
     extend self
 
+    LoginError              = Class.new(Error)
+    CredentialsInvalidError = Class.new(LoginError)
+    AccountUnconfirmedError = Class.new(LoginError)
+    AccountLockedError      = Class.new(LoginError)
+
     def authorize_url
       fidor_authorize_url
     end
@@ -33,8 +38,13 @@ module FidorApi
         username:   username,
         password:   password
       }
-
       Token.new JSON.parse(response.body)
+    rescue Faraday::ClientError => e
+      error = JSON.parse(e.response[:body])["error_description"]
+      raise CredentialsInvalidError if error =~ /invalid/
+      raise AccountUnconfirmedError if error =~ /unconfirmed/
+      raise AccountLockedError      if error =~ /locked/
+      raise LoginError
     end
 
     def client_token

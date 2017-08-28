@@ -39,13 +39,50 @@ describe FidorApi::Auth do
   end
 
   describe ".login" do
-    it "receives a new access_token for the user" do
-      VCR.use_cassette("auth/login", record: :once) do
-        token = FidorApi::Auth.login(
-          username: "peter.tester@example.com",
-          password: "12345678"
-        )
-        expect(token).to be_instance_of FidorApi::Token
+    context "when the login is successful" do
+      it "receives a new access_token for the user" do
+        VCR.use_cassette("auth/login_success", record: :once) do
+          token = FidorApi::Auth.login(
+            username: "peter.tester@example.com",
+            password: "12345678"
+          )
+          expect(token).to be_instance_of FidorApi::Token
+        end
+      end
+    end
+
+    context "when the login is not successful" do
+      it "raises the correct error for pw-wrong case" do
+        VCR.use_cassette("auth/login_failure_pw_wrong", record: :once) do
+          expect {
+            FidorApi::Auth.login(
+              username: "peter.tester@example.com",
+              password: "wrong"
+            )
+          }.to raise_error FidorApi::Auth::CredentialsInvalidError
+        end
+      end
+
+      it "raises the correct error for account-unconfirmed case" do
+        VCR.use_cassette("auth/login_failure_account_unconfirmed", record: :once) do
+          expect {
+            FidorApi::Auth.login(
+              username: "peter.tester@example.com",
+              password: "12345678"
+            )
+          }.to raise_error FidorApi::Auth::AccountUnconfirmedError
+        end
+      end
+
+      it "raises the correct error for account-locked case" do
+        VCR.use_cassette("auth/login_failure_account_locked", record: :once) do
+          expect {
+            FidorApi::Auth.login(
+              username: "peter.tester@example.com",
+              password: "12345678"
+            )
+          }.to raise_error FidorApi::Auth::AccountLockedError
+        end
       end
     end
   end
