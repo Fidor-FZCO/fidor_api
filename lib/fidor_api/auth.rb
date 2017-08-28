@@ -27,6 +27,16 @@ module FidorApi
       Token.new JSON.parse(response.body)
     end
 
+    def login(username:, password:, grant_type: "password")
+      response = connection.post "/oauth/token", {
+        grant_type: grant_type,
+        username:   username,
+        password:   password
+      }
+
+      Token.new JSON.parse(response.body)
+    end
+
     def client_token
       response = connection.post "/oauth/token", { grant_type: "client_credentials" }
 

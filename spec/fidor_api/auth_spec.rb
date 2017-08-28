@@ -38,6 +38,18 @@ describe FidorApi::Auth do
     end
   end
 
+  describe ".login" do
+    it "receives a new access_token for the user" do
+      VCR.use_cassette("auth/login", record: :once) do
+        token = FidorApi::Auth.login(
+          username: "peter.tester@example.com",
+          password: "12345678"
+        )
+        expect(token).to be_instance_of FidorApi::Token
+      end
+    end
+  end
+
   describe ".client_token" do
     it "receives a new access_token for the client-id & client-secret pair" do
       VCR.use_cassette("auth/client_token", record: :once) do
