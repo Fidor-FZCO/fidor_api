@@ -68,31 +68,32 @@ describe FidorApi::Customer do
 
       let(:params) do
         {
-          email:                 "walther@heisenberg.com",
-          password:              "superDuperSecret",
-          adr_mobile:            "4917666666666",
-          title:                 1, # TODO: On get it's a string like "Herr". Maybe the schema and example are wrong or the API is inconsistent in this case.
-          first_name:            "Walther",
-          additional_first_name: "Heisenberg",
-          last_name:             "White",
-          occupation:            "1",
-          gender:                FidorApi::Customer::Gender::Male,
-          birthplace:            "Albuquerque",
-          birthday:              Date.new(1957, 9, 7),
-          nationality:           "US",
-          marital_status:        "1",
-          adr_street:            "Negra Arroyo Lane",
-          adr_street_number:     "308",
-          adr_post_code:         "87111",
-          adr_city:              "Albuquerque",
-          adr_country:           "US",
-          tos:                   true,
-          privacy_policy:        true,
-          own_interest:          true,
-          us_citizen:            true,
-          us_tax_payer:          true,
-          newsletter:            true,
-          verification_token:    "tE5MpiQ4AazIGFgV5cS3HFbNy6IL8Ey2IpgtUnxgzm59zDTQny4ViVjl8wpz1clRCYDQ2w"
+          email:                          "walther@heisenberg.com",
+          password:                       "superDuperSecret",
+          adr_mobile:                     "4917666666666",
+          title:                          1, # TODO: On get it's a string like "Herr". Maybe the schema and example are wrong or the API is inconsistent in this case.
+          first_name:                     "Walther",
+          additional_first_name:          "Heisenberg",
+          last_name:                      "White",
+          occupation:                     "1",
+          gender:                         FidorApi::Customer::Gender::Male,
+          birthplace:                     "Albuquerque",
+          birthday:                       Date.new(1957, 9, 7),
+          nationality:                    "US",
+          marital_status:                 "1",
+          adr_street:                     "Negra Arroyo Lane",
+          adr_street_number:              "308",
+          adr_post_code:                  "87111",
+          adr_city:                       "Albuquerque",
+          adr_country:                    "US",
+          tos:                            true,
+          privacy_policy:                 true,
+          own_interest:                   true,
+          us_citizen:                     true,
+          us_tax_payer:                   true,
+          newsletter:                     true,
+          verification_token:             "tE5MpiQ4AazIGFgV5cS3HFbNy6IL8Ey2IpgtUnxgzm59zDTQny4ViVjl8wpz1clRCYDQ2w",
+          community_terms_and_conditions: true
         }
       end
 
@@ -122,27 +123,28 @@ describe FidorApi::Customer do
 
       let(:params) do
         {
-          title:                 1, # TODO: On get it's a string like "Herr". Maybe the schema and example are wrong or the API is inconsistent in this case.
-          first_name:            "Walther",
-          additional_first_name: "Heisenberg",
-          last_name:             "White",
-          occupation:            "1",
-          gender:                FidorApi::Customer::Gender::Male,
-          birthplace:            "Albuquerque",
-          birthday:              Date.new(1957, 9, 7),
-          nationality:           "US",
-          marital_status:        "1",
-          adr_street:            "Negra Arroyo Lane",
-          adr_street_number:     "308",
-          adr_post_code:         "87111",
-          adr_city:              "Albuquerque",
-          adr_country:           "US",
-          tos:                   true,
-          privacy_policy:        true,
-          own_interest:          true,
-          us_citizen:            true,
-          us_tax_payer:          true,
-          newsletter:            true
+          title:                          1, # TODO: On get it's a string like "Herr". Maybe the schema and example are wrong or the API is inconsistent in this case.
+          first_name:                     "Walther",
+          additional_first_name:          "Heisenberg",
+          last_name:                      "White",
+          occupation:                     "1",
+          gender:                         FidorApi::Customer::Gender::Male,
+          birthplace:                     "Albuquerque",
+          birthday:                       Date.new(1957, 9, 7),
+          nationality:                    "US",
+          marital_status:                 "1",
+          adr_street:                     "Negra Arroyo Lane",
+          adr_street_number:              "308",
+          adr_post_code:                  "87111",
+          adr_city:                       "Albuquerque",
+          adr_country:                    "US",
+          tos:                            true,
+          privacy_policy:                 true,
+          own_interest:                   true,
+          us_citizen:                     true,
+          us_tax_payer:                   true,
+          newsletter:                     true,
+          community_terms_and_conditions: true
         }
       end
 
