@@ -55,11 +55,19 @@ module FidorApi
 
     private
 
+    def logger_type
+      if defined?(Faraday::DetailedLogger)
+        :detailed_logger
+      else
+        :logger
+      end
+    end
+
     def connection
       Faraday.new(url: FidorApi.configuration.oauth_url, ssl: { verify: FidorApi.configuration.verify_ssl }) do |config|
         config.use      Faraday::Request::BasicAuthentication, FidorApi.configuration.client_id, FidorApi.configuration.client_secret
         config.request  :url_encoded
-        config.response :logger if FidorApi.configuration.logging
+        config.response logger_type, FidorApi.configuration.logger if FidorApi.configuration.logging
         config.response :raise_error
         config.adapter  Faraday.default_adapter
       end
