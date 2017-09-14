@@ -93,7 +93,8 @@ describe FidorApi::Customer do
           us_tax_payer:                   true,
           newsletter:                     true,
           verification_token:             "tE5MpiQ4AazIGFgV5cS3HFbNy6IL8Ey2IpgtUnxgzm59zDTQny4ViVjl8wpz1clRCYDQ2w",
-          community_terms_and_conditions: true
+          community_terms_and_conditions: true,
+          additional_nationalities:       ["BG", "GB"]
         }
       end
 
@@ -144,7 +145,8 @@ describe FidorApi::Customer do
           us_citizen:                     true,
           us_tax_payer:                   true,
           newsletter:                     true,
-          community_terms_and_conditions: true
+          community_terms_and_conditions: true,
+          additional_nationalities:       ["BG", "GB"]
         }
       end
 
@@ -193,6 +195,113 @@ describe FidorApi::Customer do
         expect {
           customer.confirm_update({token: 'wNOXOJ5pnkJx'}.with_indifferent_access)
         }.to raise_error(FidorApi::ApprovalRequired)
+      end
+    end
+  end
+
+  describe 'validate attributes' do
+    subject { FidorApi::Customer.new(params) }
+
+    let(:params) do
+      {
+        title:                          1, # TODO: On get it's a string like "Herr". Maybe the schema and example are wrong or the API is inconsistent in this case.
+        first_name:                     "Walther",
+        additional_first_name:          "Heisenberg",
+        last_name:                      "White",
+        occupation:                     "1",
+        gender:                         FidorApi::Customer::Gender::Male,
+        birthplace:                     "Albuquerque",
+        birthday:                       Date.new(1957, 9, 7),
+        nationality:                    "US",
+        marital_status:                 "1",
+        adr_street:                     "Negra Arroyo Lane",
+        adr_street_number:              "308",
+        adr_post_code:                  "87111",
+        adr_city:                       "Albuquerque",
+        adr_country:                    "US",
+        tos:                            true,
+        privacy_policy:                 true,
+        own_interest:                   true,
+        us_citizen:                     true,
+        us_tax_payer:                   true,
+        newsletter:                     true,
+        community_terms_and_conditions: true,
+        additional_nationalities:       ['BG', 'GB']
+      }
+    end
+
+    context 'validates additional_nationalities' do
+      context 'allows' do
+        it 'allows nil' do
+          customer = subject
+          customer.additional_nationalities = nil
+
+          customer.valid?
+          expect(customer.errors[:additional_nationalities].any?).to be false
+        end
+        it 'allows empty array' do
+          customer = subject
+          customer.additional_nationalities = []
+
+          customer.valid?
+          expect(customer.errors[:additional_nationalities].any?).to be false
+        end
+
+        it 'item with length 2' do
+          customer = subject
+          argument = '22'
+          customer.additional_nationalities = [argument]
+
+          customer.valid?
+          expect(customer.errors[:additional_nationalities].any?).to be false
+        end
+      end
+      context 'dont allow' do
+        it 'nil argument in the array' do
+          customer = subject
+          argument = nil
+          customer.additional_nationalities = [argument]
+
+          customer.valid?
+          expect(customer.errors[:additional_nationalities].any?).to be true
+          expect(customer.errors[:additional_nationalities][0]).to eq "Item '#{argument}' is not valid country iso code."
+        end
+        it 'empty argument in the array' do
+          customer = subject
+          argument = ''
+          customer.additional_nationalities = [argument]
+
+          customer.valid?
+          expect(customer.errors[:additional_nationalities].any?).to be true
+          expect(customer.errors[:additional_nationalities][0]).to eq "Item '#{argument}' is not valid country iso code."
+        end
+        it 'argument with length < 2 in the array' do
+          customer = subject
+          argument = '1'
+          customer.additional_nationalities = [argument]
+
+          customer.valid?
+          expect(customer.errors[:additional_nationalities].any?).to be true
+          expect(customer.errors[:additional_nationalities][0]).to eq "Item '#{argument}' is not valid country iso code."
+        end
+        it 'argument with length > 2 in the array' do
+          customer = subject
+          argument = '111'
+          customer.additional_nationalities = [argument]
+
+          customer.valid?
+          expect(customer.errors[:additional_nationalities].any?).to be true
+          expect(customer.errors[:additional_nationalities][0]).to eq "Item '#{argument}' is not valid country iso code."
+        end
+        it 'argument that is not a string in the array' do
+          customer = subject
+          argument = true
+          customer.additional_nationalities = [argument]
+
+          customer.valid?
+          expect(customer.errors[:additional_nationalities].any?).to be true
+          expect(customer.errors[:additional_nationalities][0]).to eq "Item '#{argument}' is not valid country iso code."
+        end
       end
     end
   end
