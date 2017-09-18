@@ -6,6 +6,8 @@ module FidorApi
       Response = Struct.new(:status, :headers, :raw_body) do
         def body
           if headers["content-type"] =~ /json/
+            return raw_body if raw_body == ''
+
             JSON.parse(raw_body)
           else
             raw_body

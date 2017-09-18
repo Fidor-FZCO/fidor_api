@@ -74,9 +74,8 @@ module FidorApi
     attribute :birthplace,                     :string
     attribute :invited_by_id,                  :string
     attribute :community_terms_and_conditions, :boolean
-    attribute :additional_nationalities, :json
-
-    validate :additional_nationalities_valid?
+    attribute :additional_nationalities,       :json
+    attribute :newsletter,                     :boolean
 
     def self.first
       all(page: 1, per_page: 1).first
@@ -114,14 +113,15 @@ module FidorApi
     end
 
     def as_json(options = nil)
-      debugger
       attributes.tap { |a| a[:birthday] = a[:birthday].try(:to_date) }
     end
 
     def save(anonymous: true)
-      debugger
       return false unless valid?
-      set_attributes(persisted? ? remote_update.body : remote_create(anonymous).body)
+
+      remote_operation_result_body = persisted? ? remote_update.body : remote_create(anonymous).body
+      remote_operation_result_body = {} if remote_operation_result_body.blank?
+      set_attributes(remote_operation_result_body)
       true
     rescue ValidationError => e
       self.error_keys = e.error_keys
@@ -130,20 +130,6 @@ module FidorApi
     end
 
     private
-
-    def additional_nationalities_valid?
-      return if additional_nationalities.nil?
-
-      unless additional_nationalities.is_a?(Array)
-        errors.add(:additional_nationalities, 'Has invalid values. It has to be list of country codes.')
-        return
-      end
-      additional_nationalities.each do |country_iso_code|
-        if !country_iso_code.is_a?(String) || country_iso_code.blank? || country_iso_code.length != 2
-          errors.add(:additional_nationalities, "Item '#{country_iso_code}' is not valid country iso code.")
-        end
-      end
-    end
 
     def remote_create(anonymous)
       endpoint.for(self).post(payload: self.as_json, anonymous: anonymous)
