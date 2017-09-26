@@ -93,7 +93,8 @@ describe FidorApi::Customer do
           us_tax_payer:                   true,
           newsletter:                     true,
           verification_token:             "tE5MpiQ4AazIGFgV5cS3HFbNy6IL8Ey2IpgtUnxgzm59zDTQny4ViVjl8wpz1clRCYDQ2w",
-          community_terms_and_conditions: true
+          community_terms_and_conditions: true,
+          additional_nationalities:       ["BG", "GB"]
         }
       end
 
@@ -144,7 +145,8 @@ describe FidorApi::Customer do
           us_citizen:                     true,
           us_tax_payer:                   true,
           newsletter:                     true,
-          community_terms_and_conditions: true
+          community_terms_and_conditions: true,
+          additional_nationalities:       ["BG", "GB"]
         }
       end
 
@@ -166,6 +168,20 @@ describe FidorApi::Customer do
             end
           end
         end
+
+        context 'response is empty body on save' do
+          it 'it is not JSON response' do
+            VCR.use_cassette("customer/tokenful/put_success_not_json_content_type", record: :once, match_requests_on: [:method, :uri, :headers, :body]) do
+              expect(subject.save(anonymous: false)).to be true
+            end
+          end
+          it 'it is a JSON response' do
+            VCR.use_cassette("customer/tokenful/put_success_json_content_type", record: :once, match_requests_on: [:method, :uri, :headers, :body]) do
+              expect(subject.save(anonymous: false)).to be true
+            end
+          end
+        end
+
       end
     end
   end

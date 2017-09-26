@@ -74,6 +74,8 @@ module FidorApi
     attribute :birthplace,                     :string
     attribute :invited_by_id,                  :string
     attribute :community_terms_and_conditions, :boolean
+    attribute :additional_nationalities,       :json
+    attribute :newsletter,                     :boolean
 
     def self.first
       all(page: 1, per_page: 1).first
@@ -116,7 +118,10 @@ module FidorApi
 
     def save(anonymous: true)
       return false unless valid?
-      set_attributes(persisted? ? remote_update.body : remote_create(anonymous).body)
+
+      remote_operation_result_body = persisted? ? remote_update.body : remote_create(anonymous).body
+      remote_operation_result_body = {} if remote_operation_result_body.blank?
+      set_attributes(remote_operation_result_body)
       true
     rescue ValidationError => e
       self.error_keys = e.error_keys
