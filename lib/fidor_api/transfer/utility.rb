@@ -15,6 +15,7 @@ module FidorApi
       validates :inquiry_ref_num,         presence: true
 
       def set_attributes(attrs = {})
+        self.beneficiary_unique_name = attrs.fetch("beneficiary", {})["unique_name"]
         self.utility_provider        = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["utility_provider"]
         self.utility_service         = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["utility_service"]
         self.utility_service_number  = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["utility_service_number"]
