@@ -15,19 +15,25 @@ module FidorApi
       end
 
       def validate_remote
-        params = { query_params: { validation_mode: true } }
-        persisted? ? remote_update(params) : remote_create(params)
-
+        @_validation_mode = validation_mode if respond_to?(:validation_mode)
+        self.validation_mode = true if respond_to?(:validation_mode=)
+        if persisted?
+          endpoint.for(self).put(payload: as_json, query_params: {validation_mode: true})
+        else
+          endpoint.for(self).post(payload: as_json, query_params: {validation_mode: true})
+        end
         true
       rescue ValidationError => e
         self.error_keys = e.error_keys
         map_errors(e.fields)
         false
+      ensure
+        self.validation_mode = @_validation_mode if respond_to?(:validation_mode=)
       end
 
       private
 
-      def remote_create(params = {})
+      def remote_create
         response = super
         if path = response.headers["X-Fidor-Confirmation-Path"]
           self.confirmable_action = ConfirmableAction.new(id: path.split("/").last)

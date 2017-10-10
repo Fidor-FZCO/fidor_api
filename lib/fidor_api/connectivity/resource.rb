@@ -54,8 +54,8 @@ module FidorApi
 
       private
 
-      def remote_create(params = {})
-        endpoint.for(self).post(params.merge(payload: as_json))
+      def remote_create
+        endpoint.for(self).post(payload: as_json)
       end
 
       def remote_update(*attributes)

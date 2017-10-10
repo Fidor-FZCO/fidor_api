@@ -3,9 +3,34 @@ module FidorApi
     module Generic
       ROUTING_INFO_ERROR_PREFIX = "beneficiary.routing_info.".freeze
 
+      module SetAttributes
+        # validation_mode only allows booleans, so we have to cast eventual strings
+        def set_attributes(attrs = {})
+          ['validation_mode', :validation_mode].each do |k|
+            next unless attrs[k]
+            attrs[k] = convert_to_boolean attrs[k]
+          end
+          super attrs
+        end
+
+        private
+
+        def convert_to_boolean(value)
+          case value
+          when 'true'
+            true
+          when 'false'
+            false
+          else
+            value
+          end
+        end
+      end
+
       def self.included(base)
         base.extend ModelAttribute
         base.extend AmountAttributes
+        base.prepend SetAttributes
 
         base.validates *required_attributes, presence: true
         base.validates :beneficiary_unique_name, presence: true, if: -> { create_beneficiary && !beneficiary_reference_passed? }

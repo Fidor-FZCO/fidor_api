@@ -32,18 +32,6 @@ module FidorApi
           account_currency: account_currency
         }
       end
-
-      private
-
-      def remote_create
-        response = endpoint.for(self).post(payload: self.as_json)
-
-        if path = response.headers["X-Fidor-Confirmation-Path"]
-          self.confirmable_action = ConfirmableAction.new(id: path.split("/").last)
-        end
-
-        response
-      end
     end
   end
 end

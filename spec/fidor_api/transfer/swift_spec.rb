@@ -38,6 +38,77 @@ describe FidorApi::Transfer::Swift do
     it { is_expected.to validate_presence_of :amount           }
   end
 
+  describe '#validate_remote' do
+    context 'on new record' do
+      let(:response_status) { 204 }
+      let(:response_payload) { nil }
+
+      before do
+        stub_request(:post, 'https://aps.fidor.de/transfers?validation_mode=true')
+          .to_return(status: response_status, body: JSON.dump(response_payload), headers: {'Content-Type' => 'application/json'})
+      end
+
+      it 'makes the correct request' do
+        expect(subject.validate_remote).to have_requested(:post, 'https://aps.fidor.de/transfers?validation_mode=true')
+          .with { |req|
+            expect(JSON.parse(req.body)).to eq(
+              'account_id' => '29208706',
+              'additional_attributes' => {'transfer_purpose' => 'Computer services'},
+              'amount' => 1_000,
+              'beneficiary' => {
+                'unique_name' => 'Johnny Doe',
+                'contact' => {
+                  'name' => 'John Doe',
+                  'address_line_1' => 'Street 123'
+                },
+                'bank' => {
+                  'name' => 'Bank Name',
+                  'address_line_1' => 'Street 456'
+                },
+                'routing_type' => 'SWIFT',
+                'routing_info' => {
+                  'account_number' => 'DE08100100100666666666',
+                  'swift_code' => 'FDDODEMMXXX',
+                  'account_currency' => 'EUR'
+                }
+              },
+              'currency' => 'USD',
+              'external_uid' => '4279762F8',
+              'subject' => 'Money for you',
+              'validation_mode' => 'true'
+            )
+          }
+      end
+
+      context 'on success' do
+        it 'returns true' do
+          expect(subject.validate_remote).to be true
+        end
+      end
+
+      context 'on failure response' do
+        let(:response_status) { 422 }
+        let(:response_payload) do
+          {
+            'code' => 422,
+            'errors' => [
+              {
+                'field' => 'account_id',
+                'message' => 'anything'
+              }
+            ],
+            'message' => 'Validation failed'
+          }
+        end
+
+        it 'returns false and provides errors' do
+          expect(subject.validate_remote).to be false
+          expect(subject.errors[:account_id]).to eq ['anything']
+        end
+      end
+    end
+  end
+
   describe "#save" do
     context "on success" do
       it "returns true and updates the attributes with received data" do

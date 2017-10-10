@@ -61,22 +61,52 @@ describe FidorApi::Transfer::SEPA do
 
   describe '#validate_remote' do
     context 'on new record' do
+      let(:response_status) { 204 }
+      let(:response_payload) { nil }
+
+      before do
+        stub_request(:post, 'https://aps.fidor.de/sepa_credit_transfers?validation_mode=true')
+          .to_return(status: response_status, body: JSON.dump(response_payload), headers: {'Content-Type' => 'application/json'})
+      end
+
+      it 'makes the correct request' do
+        expect(subject.validate_remote).to have_requested(:post, 'https://aps.fidor.de/sepa_credit_transfers?validation_mode=true')
+          .with { |req|
+            json = JSON.load(req.body)
+            expect(json).to eq(
+              "account_id" => "875",
+              "external_uid" => "4279762F6",
+              "remote_iban" => "AT131490022010010999",
+              "remote_name" => "John Doe",
+              "amount" => 1_000,
+              "subject" => "Money for you",
+              "remote_bic" => "SPADATW1XXX"
+            )
+          }
+      end
+
       context 'on success' do
-        it 'returns true and updates the attributes with received data' do
-          VCR.use_cassette('transfer/validate_save_success', record: :once) do
-            expect(subject.validate_remote).to be true
-          end
+        it 'returns true' do
+          expect(subject.validate_remote).to be true
         end
       end
 
       context 'on failure response' do
-        it 'returns false and provides errors' do
-          subject.account_id = 999
+        let(:response_status) { 422 }
+        let(:response_payload) { {
+          "code" => 422,
+          "errors" => [
+            {
+              "field" => "account_id",
+              "message" => "anything"
+            }
+          ],
+          "message" => "Validation failed"
+        } }
 
-          VCR.use_cassette('transfer/validate_save_failure', record: :once) do
-            expect(subject.validate_remote).to be false
-            expect(subject.errors[:account_id]).to eq ['anything']
-          end
+        it 'returns false and provides errors' do
+          expect(subject.validate_remote).to be false
+          expect(subject.errors[:account_id]).to eq ['anything']
         end
       end
     end
