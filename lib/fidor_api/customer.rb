@@ -76,6 +76,7 @@ module FidorApi
     attribute :community_terms_and_conditions, :boolean
     attribute :additional_nationalities,       :json
     attribute :newsletter,                     :boolean
+    attribute :campaign_name,                  :string
 
     def self.first
       all(page: 1, per_page: 1).first

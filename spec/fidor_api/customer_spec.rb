@@ -94,7 +94,8 @@ describe FidorApi::Customer do
           newsletter:                     true,
           verification_token:             "tE5MpiQ4AazIGFgV5cS3HFbNy6IL8Ey2IpgtUnxgzm59zDTQny4ViVjl8wpz1clRCYDQ2w",
           community_terms_and_conditions: true,
-          additional_nationalities:       ["BG", "GB"]
+          additional_nationalities:       ["BG", "GB"],
+          campaign_name:                  nil
         }
       end
 
@@ -146,7 +147,8 @@ describe FidorApi::Customer do
           us_tax_payer:                   true,
           newsletter:                     true,
           community_terms_and_conditions: true,
-          additional_nationalities:       ["BG", "GB"]
+          additional_nationalities:       ["BG", "GB"],
+          campaign_name:                  nil
         }
       end
 
