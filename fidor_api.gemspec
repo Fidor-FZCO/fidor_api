@@ -1,11 +1,10 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'fidor_api/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "fidor_api"
-  spec.version       = FidorApi::VERSION
+  spec.version       = ENV['VERSION'] || '0.0.0'
   spec.authors       = ["Klaus Meyer"]
   spec.email         = ["spam@klaus-meyer.net"]
 
