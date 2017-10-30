@@ -75,7 +75,7 @@ describe FidorApi::Transfer::Swift do
               'currency' => 'USD',
               'external_uid' => '4279762F8',
               'subject' => 'Money for you',
-              'validation_mode' => 'true'
+              'validation_mode' => true
             )
           }
       end
@@ -179,7 +179,7 @@ describe FidorApi::Transfer::Swift do
         external_uid: "4279762F8",
         subject: "Money for you",
         additional_attributes: {"transfer_purpose" => "Computer services"},
-        validation_mode: "false"
+        validation_mode: false
       )
     end
   end

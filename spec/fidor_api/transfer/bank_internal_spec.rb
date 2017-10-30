@@ -50,7 +50,7 @@ describe FidorApi::Transfer::BankInternal do
         subject: "Money for you",
         additional_attributes: {"transfer_purpose" => "Computer services"},
         scheduled_date: "2017-07-24",
-        validation_mode: "false"
+        validation_mode: false
       )
     end
   end

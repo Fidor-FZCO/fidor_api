@@ -98,7 +98,7 @@ describe FidorApi::Transfer::Utility do
         external_uid: "4279762D9",
         subject: "Money for you",
         additional_attributes: {"inquiry_ref_num"=>"534Z2qoa1qig46d4"},
-        validation_mode: "false"
+        validation_mode: false
       )
     end
   end

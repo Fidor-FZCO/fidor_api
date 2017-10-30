@@ -91,7 +91,7 @@ module FidorApi
           subject: subject,
           additional_attributes: as_json_additional_attributes,
           scheduled_date: scheduled_date,
-          validation_mode: validation_mode ? "true" : "false"
+          validation_mode: validation_mode ? true : false
         }.compact
       end
 

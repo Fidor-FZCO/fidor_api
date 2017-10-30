@@ -62,7 +62,7 @@ describe FidorApi::Transfer::P2pPhone do
         external_uid: "4279762F8",
         subject: "Money for you",
         additional_attributes: {"transfer_purpose" => "Computer services"},
-        validation_mode: "false"
+        validation_mode: false
       )
     end
   end
