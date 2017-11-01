@@ -46,6 +46,7 @@ module FidorApi
         base.attribute :exchange_rate_fee,       :string
         base.attribute :additional_attributes,   :json
         base.amount_attribute                    :amount
+        base.amount_attribute                    :beneficiary_amount
 
         base.attribute :beneficiary_unique_name, :string
         base.attribute :contact_name,            :string
