@@ -7,14 +7,24 @@ module FidorApi
 
       attribute :routing_type, :string
       attribute :routing_info, :json
+      attribute :sender,       :json
 
       def set_attributes(attrs = {})
+        self.routing_type = attrs.fetch('beneficiary', {})['routing_type']
+        self.routing_info = attrs.fetch('beneficiary', {})['routing_info']
+        self.sender       = attrs.fetch('sender', {})
+
         set_beneficiary_attributes(attrs)
 
-        self.routing_type = attrs.fetch("beneficiary", {})["routing_type"]
-        self.routing_info = attrs.fetch("beneficiary", {})["routing_info"]
+        super(attrs.except('beneficiary'))
+      end
 
-        super(attrs.except("beneficiary"))
+      def as_json_routing_type
+        self.routing_type
+      end
+
+      def as_json_routing_info
+        self.routing_info
       end
 
       module ClientSupport
