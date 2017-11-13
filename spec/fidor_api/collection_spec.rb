@@ -27,6 +27,9 @@ describe FidorApi::Collection do
           "current_page"  => 1,
           "per_page"      => 10,
           "total_entries" => 20
+        },
+        "meta" => {
+          "extra_meta_data"   => 2
         }
       }
     end
@@ -41,6 +44,11 @@ describe FidorApi::Collection do
       expect(subject.current_page).to eq 1
       expect(subject.limit_value).to  eq 10
       expect(subject.total_entries).to  eq 20
+    end
+
+    it "it uses the passed meta information" do
+      expect(subject.meta).to be
+      expect(subject.meta['extra_meta_data']).to eq 2
     end
   end
 
