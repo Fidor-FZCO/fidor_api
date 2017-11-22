@@ -7,6 +7,7 @@ module FidorApi
     autoload :Generic,          'fidor_api/transfer/generic'
     autoload :Internal,         'fidor_api/transfer/internal'
     autoload :P2pAccountNumber, 'fidor_api/transfer/p2p_account_number'
+    autoload :P2pEmail,         'fidor_api/transfer/p2p_email'
     autoload :P2pPhone,         'fidor_api/transfer/p2p_phone'
     autoload :P2pUsername,      'fidor_api/transfer/p2p_username'
     autoload :Pending,          'fidor_api/transfer/pending'
