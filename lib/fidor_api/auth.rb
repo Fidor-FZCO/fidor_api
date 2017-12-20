@@ -40,10 +40,20 @@ module FidorApi
       }
       Token.new JSON.parse(response.body)
     rescue Faraday::ClientError => e
-      error = JSON.parse(e.response[:body])["error_description"]
-      raise CredentialsInvalidError if error =~ /invalid/
-      raise AccountUnconfirmedError if error =~ /unconfirmed/
-      raise AccountLockedError      if error =~ /locked/
+      if e.response[:body].present?
+        begin
+          error = JSON.parse(e.response[:body])
+          error = Array(error["errors"]).first || {}
+          error = error["detail"]
+        rescue JSON::ParserError
+          error = nil
+        end
+
+        raise CredentialsInvalidError if error =~ /invalid/
+        raise AccountUnconfirmedError if error =~ /unconfirmed/
+        raise AccountLockedError      if error =~ /locked/
+      end
+
       raise LoginError
     end
 

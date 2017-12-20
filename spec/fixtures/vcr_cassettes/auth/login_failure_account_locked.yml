@@ -38,7 +38,7 @@ http_interactions:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"error":"invalid_credentials","error_description":"account_locked"}'
+      string: '{"errors":[{"status":"400","title":"invalid_credentials","detail":"locked"}]}'
     http_version:
   recorded_at: Mon, 28 Aug 2017 10:23:51 GMT
 recorded_with: VCR 3.0.3
