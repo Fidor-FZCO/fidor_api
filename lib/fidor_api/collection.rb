@@ -11,7 +11,7 @@ module FidorApi
       new.tap do |object|
         data       = response["data"]
         collection = response["collection"]
-        meta = response["meta"]
+        meta       = response["meta"] || response["meta_data"]
 
         object.records = data.map do |record|
           class_to_instantiate = if block_given?
