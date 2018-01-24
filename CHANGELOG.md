@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.1
+
+* Add Supposupport for `POST /legal_document_acceptances/:type` endpoint
+
 ## v0.1.0
 
 With this release this gem will start following the semantic versioning approach.

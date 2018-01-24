@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://aps.fidor.de/legal_document_acceptances
+    body:
+      encoding: UTF-8
+      string: '{"legal_document":"general_terms_retail"}'
+    headers:
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjAyMTEzMzEsInN1YiI6ImdpZDovL2F1dGgtc2VydmljZS9Vc2VyL2Y3NjAyMGY5LWEzMTEtNDVmNC04MWY5LTVhMTU3Mzg0NDVjZiIsImlzcyI6IjQ2NjhiMTA2NzY1NDVmNjAiLCJqdGkiOiJkMDhjYmRhMy0zOGQxLTQwNzUtYWMzZi1iYThmMGRlY2FlZjYiLCJyYXRlIjp7ImwiOjk5OTksInQiOjk5OTl9LCJjbGFpbXMiOlsiYmFua19jaGVjayIsIm1pZ3JhdGVfdG9fY2JzIiwicG9zdGlkZW50X2VtYWlsIiwicHVzaF9ub3RpZmljYXRpb25fdG9rZW5zIiwicmVhZHVwZGF0ZV9hY2NvdW50X2xpbWl0cyIsInJlYWR1cGRhdGVfY3VzdG9tZXIiLCJyZWFkd3JpdGVfY2FyZCIsInJlYWR3cml0ZV9jYXJkX2xpbWl0cyIsInJlYWR3cml0ZV9jYXJkX2xpbWl0cyIsInJlYWR3cml0ZV9jb25maXJtYWJsZV9hY3Rpb25zIiwicmVhZHdyaXRlX2ludGVybmFsX3RyYW5zZmVyIiwicmVhZHdyaXRlX292ZXJkcmFmdCIsInJlYWR3cml0ZV9zZWN1cml0eV9hbnN3ZXJzIiwicmVhZHdyaXRlX3NlcGFfY3JlZGl0X3RyYW5zZmVyIiwicmVhZHdyaXRlX3NlcGFfc3RhbmRpbmdfb3JkZXJzIiwicmVhZHdyaXRlX3Nob3J0X3Rlcm1fbG9hbiIsInJlYWR3cml0ZV90cmFuc2ZlcnMiLCJyZWFkd3JpdGVfdHhfcGluIiwicmVhZF9hY2NvdW50X2Z1bGwiLCJyZWFkX21lc3NhZ2VzIiwicmVhZF9wcmVhdXRoX2Z1bGwiLCJyZWFkX3NlY3VyaXR5X3F1ZXN0aW9ucyIsInJlYWRfdHJhbnNhY3Rpb25fZnVsbCIsInJlYWRfdXNlcl9mdWxsIiwidW5sb2NrX3BpbiIsInZpZGVvX2lkZW50cyIsInJlYWR3cml0ZV9sZWdhbF9kb2N1bWVudF9hY2NlcHRhbmNlcyJdLCJhY2NvdW50X25vIjoiMjQ2OTQ4ODYifQ.B7ZrJX4KVR1v6Yr3zhg9WZMRGN5wYhL4PLnLJG7Nyeg
+      Accept:
+      - application/vnd.fidor.de; version=1,text/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - no-store, must-revalidate, private, max-age=0
+      X-Ratelimit-Limit:
+      - '9999'
+      X-Ratelimit-Remaining:
+      - '9998'
+      X-Ratelimit-Reset:
+      - '9763'
+      X-Request-Id:
+      - 9f894e0d-c160-47b2-811f-74659d89192c
+      Content-Length:
+      - '48'
+    body:
+      encoding: UTF-8
+      string: '{"id":43,"document_type":"general_terms_retail"}'
+    http_version:
+  recorded_at: Mon, 22 Jan 2018 10:56:00 GMT
+recorded_with: VCR 3.0.3

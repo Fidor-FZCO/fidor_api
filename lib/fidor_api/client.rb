@@ -13,6 +13,7 @@ module FidorApi
     include ConfirmableAction::ClientSupport
     include Customer::ClientSupport
     include Message::ClientSupport
+    include LegalDocumentAcceptance::ClientSupport
     include Preauth::ClientSupport
     include SessionToken::ClientSupport
     include Transaction::ClientSupport
