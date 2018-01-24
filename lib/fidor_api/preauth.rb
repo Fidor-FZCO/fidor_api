@@ -7,6 +7,7 @@ module FidorApi
 
     attribute :id,                   :integer
     attribute :account_id,           :string
+    attribute :description,          :string
     attribute :preauth_type,         :string
     attribute :preauth_type_details, :json
     attribute :expires_at,           :time
