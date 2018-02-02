@@ -42,7 +42,8 @@ module FidorApi
         expect(model.error_keys.first).to eq('code_suspended')
         expect(model.errors.details).to eq({
           bar: [{ error: :something_special, answer: "42" }],
-          foo: [{ error: :too_short, count: 8 }]
+          foo: [{ error: :too_short, count: 8 }],
+          type: [{ error: 'code invalid' }]
         })
       end
     end

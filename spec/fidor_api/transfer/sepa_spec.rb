@@ -99,6 +99,12 @@ describe FidorApi::Transfer::SEPA do
             {
               "field" => "account_id",
               "message" => "anything"
+            },
+            {
+              "field" => "beneficiary.routing_info.remote_iban",
+              "message" => "IBAN is invalid!",
+              "options" => {},
+              "key" => "invalid"
             }
           ],
           "message" => "Validation failed"
@@ -107,6 +113,7 @@ describe FidorApi::Transfer::SEPA do
         it 'returns false and provides errors' do
           expect(subject.validate_remote).to be false
           expect(subject.errors[:account_id]).to eq ['anything']
+          expect(subject.errors['beneficiary.routing_info.remote_iban']).to eq(["IBAN is invalid!"])
         end
       end
     end

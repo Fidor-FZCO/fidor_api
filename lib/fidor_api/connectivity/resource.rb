@@ -70,13 +70,11 @@ module FidorApi
           key     = hash["key"].try :to_sym
           options = hash["options"] || {}
 
-          if field == :base || respond_to?(field)
-            if key
-              options[:count] = hash["count"] if hash["count"]
-              errors.add(field, key, options.symbolize_keys)
-            else
-              errors.add(field, hash["message"])
-            end
+          if key && (respond_to?(field) || field == :base)
+            options[:count] = hash["count"] if hash["count"]
+            errors.add(field, key, options.symbolize_keys)
+          else
+            errors.add(hash["field"], hash["message"])
           end
         end
       end
