@@ -16,6 +16,7 @@ module FidorApi
     attribute :created_at,            :time
     attribute :updated_at,            :time
     attribute :customers,             :string
+    attribute :nick,                  :string
 
     amount_attribute :balance
     amount_attribute :balance_available
