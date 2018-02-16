@@ -83,8 +83,8 @@ module FidorApi
     end
 
     def initialize(*args)
-      self.affiliate_uid = FidorApi.configuration.affiliate_uid
       super
+      self.affiliate_uid = FidorApi.configuration.affiliate_uid
     end
 
     def request_update(attributes)
@@ -120,7 +120,7 @@ module FidorApi
     def save(anonymous: true)
       return false unless valid?
 
-      remote_operation_result_body = persisted? ? remote_update(changes.keys).body : remote_create(anonymous).body
+      remote_operation_result_body = persisted? ? remote_update.body : remote_create(anonymous).body
       remote_operation_result_body = {} if remote_operation_result_body.blank?
       set_attributes(remote_operation_result_body)
       true

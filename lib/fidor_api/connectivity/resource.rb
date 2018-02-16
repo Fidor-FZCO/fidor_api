@@ -24,7 +24,6 @@ module FidorApi
 
       def initialize(attributes = {})
         set_attributes attributes
-        changes.clear
       end
 
       def reload
@@ -37,7 +36,7 @@ module FidorApi
 
       def save
         if valid?
-          set_attributes(persisted? ? remote_update(changes.keys).body : remote_create.body)
+          set_attributes(persisted? ? remote_update.body : remote_create.body)
           true
         else
           false
