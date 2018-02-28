@@ -14,6 +14,8 @@ module FidorApi
     attribute :created_at,           :time
     attribute :updated_at,           :time
     attribute :currency,             :string
+    attribute :state,                :string
+    attribute :cbs_identifier,       :string
     amount_attribute :amount
 
     def preauth_type_details
