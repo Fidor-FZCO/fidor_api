@@ -92,6 +92,7 @@ module FidorApi
         "fidor_payout"                    => Transfer,
         "emoney_payin"                    => Transfer,
         "sepa_payin"                      => Transfer,
+        "sepa_payout"                     => Transfer,
         "payout"                          => Transfer,
         "creditcard_preauth"              => CreditCard,
         "creditcard_release"              => CreditCard,
