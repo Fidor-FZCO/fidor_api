@@ -26,6 +26,7 @@ module FidorApi
       attribute :cc_type, :string
       attribute :pos_code, :string
       attribute :financial_network_code, :string
+      attribute :terminal_ref, :string
 
       def description
         cc_merchant_name.presence || super

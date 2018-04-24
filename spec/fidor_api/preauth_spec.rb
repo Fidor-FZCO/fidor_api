@@ -25,6 +25,7 @@ describe FidorApi::Preauth do
     expect(details.cc_sequence).to            eq "6882471"
     expect(details.pos_code).to               eq "812"
     expect(details.financial_network_code).to eq "MCS"
+    expect(details.terminal_ref).to           eq "17D3A91580"
   end
 
   describe ".all" do
