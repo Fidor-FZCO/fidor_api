@@ -1,55 +1,30 @@
 module FidorApi
   module Transfer
-    class SEPA < Base
-      extend ModelAttribute
-      extend AmountAttributes
+    class Sepa < Base
+      include Generic
 
-      self.endpoint = Connectivity::Endpoint.new('/sepa_credit_transfers', :collection)
+      attribute :remote_iban, :string
+      attribute :remote_bic,  :string
 
-      attribute :id,             :integer
-      attribute :account_id,     :string
-      attribute :user_id,        :string
-      attribute :transaction_id, :string
-      attribute :remote_iban,    :string
-      attribute :remote_bic,     :string
-      attribute :remote_name,    :string
-      attribute :external_uid,   :string
-      attribute :subject,        :string
-      attribute :currency,       :string
-      attribute :subject,        :string
-      attribute :state,          :string
-      attribute :created_at,     :time
-      attribute :updated_at,     :time
-      amount_attribute :amount
+      validates :contact_name, presence: true, unless: :beneficiary_reference_passed?
+      validates :remote_iban,  presence: true, unless: :beneficiary_reference_passed?
 
-      def self.required_attributes
-        [ :account_id, :external_uid, :remote_iban, :remote_name, :amount, :subject ]
+      def set_attributes(attrs = {})
+        set_beneficiary_attributes(attrs)
+        self.remote_iban = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["remote_iban"]
+        self.remote_bic  = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["remote_bic"]
+        super(attrs.except("beneficiary"))
       end
 
-      def self.writeable_attributes
-        required_attributes + [:remote_bic]
+      def as_json_routing_type
+        "SEPA"
       end
 
-      validates *required_attributes, presence: true
-
-      def as_json
-        attributes.slice *self.class.writeable_attributes
-      end
-
-      private
-
-      module ClientSupport
-        def sepa_transfers(options = {})
-          Transfer::SEPA.all(options)
-        end
-
-        def sepa_transfer(id)
-          Transfer::SEPA.find(id)
-        end
-
-        def build_sepa_transfer(attributes = {})
-          Transfer::SEPA.new(attributes)
-        end
+      def as_json_routing_info
+        {
+          remote_iban: remote_iban,
+          remote_bic:  remote_bic
+        }.compact
       end
     end
   end

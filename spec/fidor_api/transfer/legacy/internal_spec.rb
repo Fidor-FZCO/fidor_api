@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe FidorApi::Transfer::Internal do
+describe FidorApi::Transfer::Legacy::Internal do
 
   let(:client) { FidorApi::Client.new(token: token) }
   let(:token)  { FidorApi::Token.new(access_token: "f859032a6ca0a4abb2be0583b8347937") }
@@ -69,7 +69,7 @@ describe FidorApi::Transfer::Internal do
   end
 
   def expect_correct_transfer(transfer)
-    expect(transfer).to be_instance_of FidorApi::Transfer::Internal
+    expect(transfer).to be_instance_of FidorApi::Transfer::Legacy::Internal
     expect(transfer.id).to             eq 2366
     expect(transfer.account_id).to     eq "875"
     expect(transfer.user_id).to        eq "875"
@@ -98,7 +98,7 @@ describe FidorApi::Transfer::Internal do
     it "returns one record" do
       VCR.use_cassette("transfer/internal/find", record: :once) do
         transfer = client.internal_transfer 2366
-        expect(transfer).to be_instance_of FidorApi::Transfer::Internal
+        expect(transfer).to be_instance_of FidorApi::Transfer::Legacy::Internal
         expect_correct_transfer transfer
       end
     end

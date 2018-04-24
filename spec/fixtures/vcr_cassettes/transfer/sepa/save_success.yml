@@ -2,53 +2,44 @@
 http_interactions:
 - request:
     method: post
-    uri: https://aps.fidor.de/sepa_credit_transfers
+    uri: https://aps.fidor.de/transfers
     body:
       encoding: UTF-8
-      string: '{"account_id":875,"external_uid":"4279762F6","remote_iban":"AT131490022010010999","remote_bic":"SPADATW1XXX","remote_name":"John
-        Doe","amount":"1000","subject":"Money for you"}'
+      string: '{"account_id":"29208706","external_uid":"4279762F8","amount":1000,"currency":"EUR","subject":"Money
+        for you","additional_attributes":{"transfer_purpose":"Computer services"},"beneficiary":{"unique_name":"Johnny Doe","contact":{"name":"John Doe"},"bank":{},"routing_type":"SEPA","routing_info":{"mobile_phone_number":"+971
+        55 1234567"}}}'
     headers:
       Authorization:
-      - Bearer a1e8f8d70e5490611c4ef051f3a36e09
+      - Bearer 0816d2665999fbd76a69c6f0050a49fa
       Accept:
       - application/vnd.fidor.de; version=1,text/json
       Content-Type:
       - application/json
   response:
     status:
-      code: 200
-      message: 
+      code: 201
+      message:
     headers:
       date:
-      - Sat, 12 Sep 2015 01:03:48 GMT
-      status:
-      - 200 OK
-      x-frame-options:
-      - SAMEORIGIN
-      x-xss-protection:
-      - 1; mode=block
-      x-content-type-options:
-      - nosniff
+      - Mon, 22 Aug 2016 12:34:04 GMT
       content-type:
       - application/json; charset=utf-8
-      etag:
-      - '"a8a5e96d9343b0a8d708cb120bf0d4c7"'
-      cache-control:
-      - max-age=0, private, must-revalidate
+      content-length:
+      - '1564'
       x-request-id:
-      - 79d6daa8-5250-4862-8a17-0f2e9916ebdc
+      - 28d638ac-4296-4d1e-ae57-87ad8f92fc2f
+      x-fidor-confirmation-path:
+      - "/fidor_api/confirmable/actions/8437c0c7-f704-4fc8-8ee0-3c18aedc8484"
       x-runtime:
-      - '0.080583'
+      - '0.005826'
       via:
       - 1.1 aps.fidor.de
       connection:
       - close
-      transfer-encoding:
-      - chunked
     body:
       encoding: UTF-8
-      string: '{"id":"10548","external_uid":"4279762F6","account_id":"875","user_id":"875","transaction_id":null,"subject":"Money
-        for you","amount":1000,"currency":null,"remote_name":"John Doe","remote_iban":"AT131490022010010999","remote_bic":"SPADATW1XXX","state":"received","created_at":"2015-09-12T01:03:48Z","updated_at":"2015-09-12T01:03:48Z"}'
-    http_version: 
-  recorded_at: Sat, 12 Sep 2015 01:03:48 GMT
+      string: '{"account_id":"29208706","external_uid":"4279762F8","amount":1000,"currency":"EUR","subject":"Money
+        for you","additional_attributes":{"transfer_purpose":"Computer services"},"beneficiary":{"contact":{"name":"John Doe"},"routing_type":"SEPA","routing_info":{"mobile_phone_number":"+97155 1234567"}}}'
+    http_version:
+  recorded_at: Mon, 22 Aug 2016 12:34:03 GMT
 recorded_with: VCR 2.9.3
