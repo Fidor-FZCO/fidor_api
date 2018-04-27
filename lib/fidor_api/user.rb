@@ -23,7 +23,7 @@ module FidorApi
     end
 
     def self.current
-      new endpoint.for(self).get(action: 'current').body
+      new endpoint.for(self).get(action: 'current', target: :collection).body
     end
 
     private

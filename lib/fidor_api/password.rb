@@ -6,7 +6,7 @@ module FidorApi
 
     def self.request_new(email)
       params = {email: email, type: "reset_token"}
-      response = endpoint.for(self).put(action: "new_token", payload: params)
+      response = endpoint.for(self).put(action: "new_token", target: :collection, payload: params)
       response.body["success"]
     end
 
