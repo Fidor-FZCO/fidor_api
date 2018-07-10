@@ -18,7 +18,7 @@ module FidorApi
     include SessionToken::ClientSupport
     include Transaction::ClientSupport
     include Transfer::ACH::ClientSupport
-    include Transfer::FPS::ClientSupport
+    include Transfer::Legacy::Fps::ClientSupport
     include Transfer::Legacy::Internal::ClientSupport
     include Transfer::Legacy::Sepa::ClientSupport
     include Transfer::P2pAccountNumber::ClientSupport

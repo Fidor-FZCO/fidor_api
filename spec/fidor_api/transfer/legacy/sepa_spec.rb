@@ -1,6 +1,5 @@
 require "spec_helper"
 
-
 describe FidorApi::Transfer::Legacy::Sepa do
   let(:client) { FidorApi::Client.new(token: token) }
   let(:token)  { FidorApi::Token.new(access_token: "f859032a6ca0a4abb2be0583b8347937") }

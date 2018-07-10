@@ -5,7 +5,7 @@ describe FidorApi::Transfer do
   let(:client) { FidorApi::Client.new(token: token) }
   let(:token)  { FidorApi::Token.new(access_token: "f859032a6ca0a4abb2be0583b8347937") }
 
-  describe FidorApi::Transfer::FPS do
+  describe FidorApi::Transfer::Legacy::Fps do
 
     subject do
       client.build_fps_transfer(
@@ -32,7 +32,7 @@ describe FidorApi::Transfer do
     describe "#save" do
       context "on success" do
         it "returns true and updates the attributes with received data" do
-          VCR.use_cassette("transfer/fps/save_success", record: :once) do
+          VCR.use_cassette("transfer/legacy/fps/save_success", record: :once) do
             expect(subject.save).to be true
 
             expect(subject.id).to    eq 5
@@ -53,7 +53,7 @@ describe FidorApi::Transfer do
         it "returns false and provides errors" do
           subject.account_id = 999
 
-          VCR.use_cassette("transfer/fps/save_failure", record: :once) do
+          VCR.use_cassette("transfer/legacy/fps/save_failure", record: :once) do
             expect(subject.save).to be false
             expect(subject.errors[:account_id]).to eq ["anything"]
           end
@@ -76,7 +76,7 @@ describe FidorApi::Transfer do
     end
 
     def expect_correct_transfer(transfer)
-      expect(transfer).to be_instance_of FidorApi::Transfer::FPS
+      expect(transfer).to be_instance_of FidorApi::Transfer::Legacy::Fps
       expect(transfer.id).to               eq 5
       expect(transfer.account_id).to       eq "1"
       expect(transfer.user_id).to          eq "1"
@@ -95,7 +95,7 @@ describe FidorApi::Transfer do
 
     describe ".all" do
       it "returns all transfer records" do
-        VCR.use_cassette("transfer/fps/all", record: :once) do
+        VCR.use_cassette("transfer/legacy/fps/all", record: :once) do
           transfers = client.fps_transfers
           expect(transfers).to be_instance_of FidorApi::Collection
           expect_correct_transfer transfers.first
@@ -105,9 +105,9 @@ describe FidorApi::Transfer do
 
     describe ".find" do
       it "returns one record" do
-        VCR.use_cassette("transfer/fps/find", record: :once) do
+        VCR.use_cassette("transfer/legacy/fps/find", record: :once) do
           transfer = client.fps_transfer 5
-          expect(transfer).to be_instance_of FidorApi::Transfer::FPS
+          expect(transfer).to be_instance_of FidorApi::Transfer::Legacy::Fps
           expect_correct_transfer transfer
         end
       end
