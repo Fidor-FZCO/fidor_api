@@ -11,6 +11,7 @@ module FidorApi
   attr_accessor :configuration
 
   autoload :Account,                 'fidor_api/account'
+  autoload :Address,                 'fidor_api/address'
   autoload :AmountAttributes,        'fidor_api/amount_attributes'
   autoload :ApprovalRequired,        'fidor_api/approval_required'
   autoload :Auth,                    'fidor_api/auth'
@@ -32,8 +33,10 @@ module FidorApi
   autoload :NotificationOptions,     'fidor_api/notification_options'
   autoload :Msisdn,                  'fidor_api/msisdn'
   autoload :Password,                'fidor_api/password'
+  autoload :Person,                  'fidor_api/person'
   autoload :Preauth,                 'fidor_api/preauth'
   autoload :PreauthDetails,          'fidor_api/preauth_details'
+  autoload :Preference,              'fidor_api/preference'
   autoload :SessionToken,            'fidor_api/session_token'
   autoload :Token,                   'fidor_api/token'
   autoload :SddReturnTransaction,    'fidor_api/sdd_return_transaction'
