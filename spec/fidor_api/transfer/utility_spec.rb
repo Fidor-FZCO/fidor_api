@@ -104,14 +104,29 @@ describe FidorApi::Transfer::Utility do
   end
 
   describe ".find" do
+    let(:transfer_uuid) { "13a414ce-1560-43e7-870f-c43829b9d589" }
+
     it "returns a transfer object filled with data" do
       VCR.use_cassette("transfer/utility/find", record: :once) do
-        transfer = described_class.find "13a414ce-1560-43e7-870f-c43829b9d589"
+        transfer = described_class.find transfer_uuid
 
         expect(transfer).to be_instance_of described_class
-        expect(transfer.id).to              eq "13a414ce-1560-43e7-870f-c43829b9d589"
+        expect(transfer.id).to              eq transfer_uuid
         expect(transfer.utility_service).to eq "Utility Service"
         expect(transfer.inquiry_ref_num).to eq "Inquiry Ref Num"
+      end
+    end
+
+    context 'when request contains additional_attributes = nil' do
+      it "still returns a transfer object filled with data" do
+        VCR.use_cassette("transfer/utility/find_additional_attributes_nil", record: :once) do
+          transfer = described_class.find transfer_uuid
+
+          expect(transfer).to be_instance_of described_class
+          expect(transfer.id).to              eq transfer_uuid
+          expect(transfer.utility_service).to eq "Utility Service"
+          expect(transfer.inquiry_ref_num).to eq nil
+        end
       end
     end
   end

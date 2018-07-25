@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://aps.fidor.de/transfers/13a414ce-1560-43e7-870f-c43829b9d589
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer 0816d2665999fbd76a69c6f0050a49fa
+      Accept:
+      - application/vnd.fidor.de; version=1,text/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Mon, 06 Mar 2017 13:47:35 GMT
+      Status:
+      - 201 Created
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1564'
+      X-Request-Id:
+      - 60c7dff5-d865-4c67-8757-8a106102f947
+      X-Runtime:
+      - '0.003824'
+      Via:
+      - 1.1 aps.fidor.de
+      Connection:
+      - close
+    body:
+    body:
+      encoding: UTF-8
+      string: '{"id":"13a414ce-1560-43e7-870f-c43829b9d589","account_id":"29208706","amount":1000,"currency":"USD","subject":"Money
+        for you","state":"created","beneficiary":{"contact":{"name":null,"address_line_1":null,"address_line_2":null,"city":null,"country":null},"bank":{"name":null,"address_line_1":null,"address_line_2":null,"city":null,"country":null},"routing_type":"UTILITY","routing_info":{"utility_provider":"Utility
+        Provider","utility_service":"Utility Service","utility_service_number":"12345678","inquiry_ref_num":"534Z2qoa1qig46d4"}},"created_at":"2017-01-17T14:47:38Z","updated_at":"2017-01-17T14:47:38Z","external_uid":"4279762D9","beneficiary_id":null,"additional_attributes":null}'
+    http_version:
+  recorded_at: Mon, 06 Mar 2017 13:47:35 GMT
+recorded_with: VCR 3.0.3
