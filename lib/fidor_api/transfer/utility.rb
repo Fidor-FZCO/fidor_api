@@ -15,13 +15,13 @@ module FidorApi
       validates :inquiry_ref_num,         presence: true
 
       def set_attributes(attrs = {})
-        self.beneficiary_unique_name = attrs.fetch("beneficiary", {})["unique_name"]
-        self.utility_provider        = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["utility_provider"]
-        self.utility_service         = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["utility_service"]
-        self.utility_service_number  = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["utility_service_number"]
-        self.additional_fields       = attrs.fetch("beneficiary", {}).fetch("routing_info", {})["additional_fields"]
+        self.beneficiary_unique_name = attrs.dig('beneficiary', 'unique_name')
+        self.utility_provider        = attrs.dig('beneficiary', 'routing_info', 'utility_provider')
+        self.utility_service         = attrs.dig('beneficiary', 'routing_info', 'utility_service')
+        self.utility_service_number  = attrs.dig('beneficiary', 'routing_info', 'utility_service_number')
+        self.additional_fields       = attrs.dig('beneficiary', 'routing_info', 'additional_fields')
 
-        self.inquiry_ref_num = attrs.fetch("additional_attributes", {})["inquiry_ref_num"]
+        self.inquiry_ref_num = attrs.dig('additional_attributes', 'inquiry_ref_num')
 
         super(attrs.except("routing_type", "routing_info"))
       end
