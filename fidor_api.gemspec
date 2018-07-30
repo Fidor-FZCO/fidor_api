@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = ENV["NAME"]    || "fidor_api"
-  spec.version       = ENV["VERSION"] || "0.1.1"
+  spec.version       = ENV["VERSION"] || "0.1.2"
   spec.authors       = ["Klaus Meyer"]
   spec.email         = ["spam@klaus-meyer.net"]
 
