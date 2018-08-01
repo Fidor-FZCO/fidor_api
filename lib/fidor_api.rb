@@ -43,6 +43,7 @@ module FidorApi
   autoload :TransactionDetails,      'fidor_api/transaction_details'
   autoload :Transaction,             'fidor_api/transaction'
   autoload :Transfer,                'fidor_api/transfer'
+  autoload :StandingOrder,           'fidor_api/standing_order'
   autoload :User,                    'fidor_api/user'
   autoload :Version,                 'fidor_api/version'
   autoload :Notification,            'fidor_api/notification'
