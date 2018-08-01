@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.1.2
+* Forward http_headers with auth and msisdn requests.
+
 ## v0.1.1
 
 * Add Supposupport for `POST /legal_document_acceptances/:type` endpoint
