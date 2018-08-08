@@ -77,6 +77,8 @@ module FidorApi
     attribute :additional_nationalities,       :json
     attribute :newsletter,                     :boolean
     attribute :campaign_name,                  :string
+    attribute :personal_tax_no,                :string
+    attribute :personal_tax_no_country,        :string
 
     def self.first
       all(page: 1, per_page: 1).first
