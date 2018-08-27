@@ -29,6 +29,7 @@ module FidorApi
   autoload :Connectivity,            'fidor_api/connectivity'
   autoload :Customer,                'fidor_api/customer'
   autoload :Customers,               'fidor_api/customers/confirmations'
+  autoload :InAppCommunication,      'fidor_api/in_app_communication'
   autoload :Message,                 'fidor_api/message'
   autoload :NotificationOptions,     'fidor_api/notification_options'
   autoload :Msisdn,                  'fidor_api/msisdn'
