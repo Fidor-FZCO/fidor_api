@@ -16,7 +16,7 @@ describe FidorApi::InAppCommunication do
     expect(in_app_communication.link_external).to        eq(true)
     expect(in_app_communication.background_image_url).to eq('https://background_image_url')
     expect(in_app_communication.platform).to             eq('all')
-    expect(in_app_communication.expiration_date).to      eq('2018-08-28')
+    expect(in_app_communication.expiration_date).to      eq Time.new(2015, 8, 26, 15, 43, 30, "+00:00")
     expect(in_app_communication.created_at).to           eq Time.new(2015, 8, 26, 15, 43, 30, "+00:00")
     expect(in_app_communication.updated_at).to           eq Time.new(2015, 8, 26, 15, 43, 30, "+00:00")
   end

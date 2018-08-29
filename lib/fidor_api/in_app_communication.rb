@@ -13,7 +13,7 @@ module FidorApi
     attribute :link_external,        :boolean
     attribute :background_image_url, :string
     attribute :platform,             :string
-    attribute :expiration_date,      :string
+    attribute :expiration_date,      :time
     attribute :created_at,           :time
     attribute :updated_at,           :time
 
