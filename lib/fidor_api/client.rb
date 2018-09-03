@@ -12,6 +12,7 @@ module FidorApi
     include Bonus::ClientSupport
     include ConfirmableAction::ClientSupport
     include Customer::ClientSupport
+    include InAppCommunication::ClientSupport
     include LegalDocumentAcceptance::ClientSupport
     include Message::ClientSupport
     include Preauth::ClientSupport
