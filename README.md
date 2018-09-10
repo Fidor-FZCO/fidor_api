@@ -5,6 +5,6 @@ Please use `gen-y` one instead.
 
 ## Background:
 
-This is a internal fork of the official `fidor_api` gem which has it's source-code hosted on public GitHub:
+This is a internal fork from the v1 of the official `fidor_api` gem which has it's source-code hosted on public GitHub:
 
-https://github.com/fidor/fidor_api
+https://github.com/fidor/fidor_api/tree/v1
