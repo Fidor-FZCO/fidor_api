@@ -49,6 +49,7 @@ module FidorApi
   autoload :Version,                 'fidor_api/version'
   autoload :Notification,            'fidor_api/notification'
   autoload :LegalDocumentAcceptance, 'fidor_api/legal_document_acceptance'
+  autoload :GdprData,                'fidor_api/gdpr_data'
 
   def configure
     self.configuration = Configuration.new.tap do |config|
