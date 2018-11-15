@@ -23,6 +23,8 @@ module FidorApi
     attribute :disabled,                  :boolean
     attribute :address,                   :json
     attribute :pan,                       :string
+    attribute :in_renewal,                :boolean
+    attribute :renewal,                   :json
     attribute :created_at,                :time
     attribute :updated_at,                :time
 
