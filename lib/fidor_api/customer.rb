@@ -31,6 +31,7 @@ module FidorApi
 
     attribute :id,                             :integer
     attribute :customer_number,                :integer
+    attribute :user_id,                        :integer
     attribute :email,                          :string
     attribute :first_name,                     :string
     attribute :last_name,                      :string
