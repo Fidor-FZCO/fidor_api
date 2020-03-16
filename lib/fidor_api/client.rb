@@ -9,6 +9,7 @@ module FidorApi
     include Beneficiary::ClientSupport
     include Beneficiary::ACH::ClientSupport
     include Beneficiary::UaeDomestic::ClientSupport
+    include Beneficiary::DebitCard::ClientSupport
     include Bonus::ClientSupport
     include ConfirmableAction::ClientSupport
     include Customer::ClientSupport
@@ -27,6 +28,7 @@ module FidorApi
     include Transfer::SEPA::ClientSupport
     include Transfer::UaeDomestic::ClientSupport
     include User::ClientSupport
+    include Transfer::DebitCard::ClientSupport
   end
 
 end
