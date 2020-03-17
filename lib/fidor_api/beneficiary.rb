@@ -9,7 +9,8 @@ module FidorApi
     autoload :UaeDomestic,      'fidor_api/beneficiary/uae_domestic'
     autoload :Swift,            'fidor_api/beneficiary/swift'
     autoload :Unknown,          'fidor_api/beneficiary/unknown'
-    autoload :Utility,          'fidor_api/beneficiary/utility'
+    autoload :Utility,          'fidor_api/beneficiary/utility' 
+    autoload :DebitCard,        'fidor_api/beneficiary/debit_card'
 
     module ClientSupport
       def beneficiaries(options = {})
