@@ -29,7 +29,7 @@ module FidorApi
       end
 
       def as_json_routing_type
-        "direct_debit"
+        "DEBIT_CARD_TRANSFER"
       end
 
       def as_json_routing_info
