@@ -10,6 +10,7 @@ module FidorApi
         "UAE_DOMESTIC"           => "FidorApi::Beneficiary::UaeDomestic",
         "SWIFT"                  => "FidorApi::Beneficiary::Swift",
         "UTILITY"                => "FidorApi::Beneficiary::Utility",
+        "DEBIT_CARD_TRANSFER"    => "FidorApi::Beneficiary::DebitCard",
       }
 
       self.endpoint = Connectivity::Endpoint.new('/beneficiaries', :collection)
