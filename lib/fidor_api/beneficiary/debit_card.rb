@@ -39,7 +39,7 @@ module FidorApi
 
       module ClientSupport
         def build_uae_domestic_beneficiary(attributes = {})
-          Beneficiary::DirectDebit.new(attributes)
+          Beneficiary::DebitCard.new(attributes)
         end
       end
     end
